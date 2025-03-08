@@ -553,7 +553,7 @@ resultContainer?.addEventListener("click", (e) => {
 		printJS({
 			printable: "printSection",
 			type: "html",
-			css: "/src/css/style.css",
+			css: "/assets/main-bJQ6UVfv.css",
 			scanStyles: false,
 			style: `
 					body{
@@ -631,30 +631,33 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //
-if ("serviceWorker" in navigator) {
-	navigator.serviceWorker.register("/service-worker.js");
-}
-
 let deferredPrompt;
-const installButton = document.getElementById("installButton");
 
-window.addEventListener("beforeinstallprompt", (event) => {
-	console.log("beforeinstallprompt event fired!"); // ← این باید در کنسول دیده شود
-	event.preventDefault();
-	deferredPrompt = event;
-	installButton.style.display = "block";
+window.addEventListener("beforeinstallprompt", (e) => {
+	// جلوگیری از نمایش خودکار پاپ‌آپ
+	e.preventDefault();
+	// ذخیره رویداد برای استفاده بعدی
+	deferredPrompt = e;
+	// نمایش دکمه یا پاپ‌آپ نصب
+	showInstallPromotion();
 });
 
-installButton.addEventListener("click", () => {
-	if (deferredPrompt) {
+function showInstallPromotion() {
+	// اینجا می‌توانید یک پاپ‌آپ یا دکمه برای نصب نمایش دهید
+	const installButton = document.getElementById("install-button");
+	installButton.style.display = "block";
+
+	installButton.addEventListener("click", () => {
+		// نمایش درخواست نصب به کاربر
 		deferredPrompt.prompt();
+		// منتظر پاسخ کاربر بمانید
 		deferredPrompt.userChoice.then((choiceResult) => {
 			if (choiceResult.outcome === "accepted") {
-				console.log("User accepted the install prompt");
+				console.log("کاربر نصب را پذیرفت");
 			} else {
-				console.log("User dismissed the install prompt");
+				console.log("کاربر نصب را رد کرد");
 			}
 			deferredPrompt = null;
 		});
-	}
-});
+	});
+}

@@ -352,11 +352,21 @@
 			</div>
 		</div>
 		<!--  -->
-		<button
-			id="installButton"
-			style="display: none">
-			Install
-		</button>
+		<div
+			id="install-popup"
+			style="
+				display: none;
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				background: #fff;
+				padding: 10px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			">
+			<p>آیا می‌خواهید اپلیکیشن ما را نصب کنید؟</p>
+			<button id="install-button">نصب اپلیکیشن</button>
+			<button id="close-button">بستن</button>
+		</div>
 		<!--  -->
 		<script
 			type="text/javascript"
