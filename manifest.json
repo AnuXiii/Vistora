@@ -27,7 +27,7 @@
 			"form_factor": "wide"
 		},
 		{
-			"src": "/images/screen2-1080",
+			"src": "/images/screen2-1080.png",
 			"sizes": "1080x1920",
 			"type": "image/png"
 		}
