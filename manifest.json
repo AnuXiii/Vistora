@@ -1,0 +1,15 @@
+{
+	"name": "Vistora",
+	"short_name": "Vistora",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#e11d48",
+	"icons": [
+		{
+			"src": "/images/logo.png",
+			"type": "image/png",
+			"sizes": "100x71"
+		}
+	]
+}

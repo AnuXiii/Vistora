@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@font-face {
+	font-family: "dana-regular";
+	src: url(/fonts/dana/dana-fanum-regular.woff2) format("woff2");
+	font-display: swap;
+}
+@font-face {
+	font-family: "dana-bold";
+	src: url(/fonts/dana/dana-fanum-bold.woff2) format("woff2");
+	font-display: swap;
+}
+
+@theme {
+	--color-primary: #e11d48;
+	--color-black: #171717;
+	--color-white: #f8fafc;
+	--font-dana: "dana-regular";
+	--font-dana-bold: "dana-bold";
+}
+
+@layer base {
+	/* hide input number in firefox & chrome browsers */
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="search"]::-webkit-search-cancel-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type="number"] {
+		appearance: textfield;
+		-moz-appearance: textfield;
+	}
+
+	html {
+		@apply scroll-smooth;
+	}
+
+	body {
+		@apply font-dana text-base bg-white text-black transition-colors duration-200;
+	}
+
+	.logo {
+		@apply relative font-extralight duration-200 bg-primary bg-gradient-to-tr from-primary to-black w-24 h-12 after:content-['Vistora'] after:text-white after:z-10 after:text-center after:w-full after:absolute after:bottom-2 -mr-4;
+		mask-image: url(/images/logo.png);
+		mask-size: contain;
+		mask-position: center;
+		mask-repeat: no-repeat;
+	}
+}
+
+@layer components {
+	.cr {
+		@apply max-w-7xl p-4 mx-auto mb-24 max-[480px]:p-2;
+	}
+
+	.link {
+		@apply relative block duration-200 w-fit p-2 text-lg hover:text-primary hover:after:w-full hover:after:right-0;
+
+		&::after {
+			content: "";
+			@apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary duration-200 ease-out;
+		}
+	}
+
+	.fade-in {
+		animation: fade-in 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+}
+
+@layer utilities {
+	.active {
+		@apply bg-primary text-white;
+
+		span {
+			@apply text-white;
+		}
+
+		img {
+			@apply brightness-[20];
+		}
+	}
+}
+
+@media (max-width: 580px) {
+	#navigation {
+		@apply fixed right-0 top-0 p-4 flex-col justify-start items-start backdrop-blur-xs bg-black/90 text-white w-full h-full z-50 hidden;
+
+		li,
+		button {
+			@apply w-full;
+		}
+	}
+
+	#navigation.show {
+		@apply flex;
+	}
+}
+
+/* invoice content for download invoice as image */
+#invoice-content {
+	width: 1920px;
+	transform: scale(1);
+	transform-origin: top left;
+	background-color: var(--color-white);
+}
+
+@media (max-width: 991px) {
+	#invoice-content {
+		width: 991px;
+		min-height: 100vh;
+	}
+}
+
+#printSection {
+	display: block;
+	visibility: visible;
+	position: absolute;
+	top: 0;
+	left: 0;
+	inset: 0;
+	width: 100vw;
+	z-index: 101;
+	background: white;
+}
+
+#edu-gif {
+	clip-path: inset(6% 0 6% 0);
+}
+
+.acc-button.ac-active {
+	@apply border-black/10;
+}
+
+.toastify {
+	@apply max-w-[90%] text-center;
+}
