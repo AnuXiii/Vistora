@@ -17,6 +17,13 @@
 	--color-white: #f8fafc;
 	--font-dana: "dana-regular";
 	--font-dana-bold: "dana-bold";
+	--animate-top-in: bounce 0.5s 3s ease-in-out forwards;
+	@keyframes bounce {
+		to {
+			opacity: 1;
+			transform: translateY(100%);
+		}
+	}
 }
 
 @layer base {

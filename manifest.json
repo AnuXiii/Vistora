@@ -21,13 +21,13 @@
 	],
 	"screenshots": [
 		{
-			"src": "/images/screen1-1080.png",
+			"src": "/images/screen-1.png",
 			"sizes": "1080x1920",
 			"type": "image/png",
 			"form_factor": "wide"
 		},
 		{
-			"src": "/images/screen2-1080.png",
+			"src": "/images/screen-2.png",
 			"sizes": "1080x1920",
 			"type": "image/png"
 		}

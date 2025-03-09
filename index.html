@@ -150,10 +150,10 @@
 				</div>
 				<!--  -->
 				<div
-					class="result-container grid grid-cols-2 gap-8 justify-center items-center max-[991px]:grid-cols-1 pb-16"></div>
+					class="result-container grid grid-cols-2 gap-8 justify-center items-center max-[991px]:grid-cols-1 pb-30"></div>
 				<!--  -->
 			</main>
-			<div class="fixed bottom-0 w-full">
+			<div class="fixed bottom-0 right-0 w-full">
 				<div class="flex justify-center items-center w-full">
 					<button
 						id="create-invoice"
@@ -181,10 +181,10 @@
 			<!--  -->
 			<div class="mt-12">
 				<h1 class="text-2xl font-dana-bold font-bold text-center mb-8 max-[991px]:hidden">مشخصات فاکتور</h1>
-				<div class="grid grid-cols-1 gap-4 pb-16 min-[991px]:grid-cols-2 max-w-7xl mx-auto">
+				<div class="grid grid-cols-1 gap-4 pb-30 min-[991px]:grid-cols-2 max-w-7xl mx-auto">
 					<div class="flex justify-center items-center w-full relative">
 						<div
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10"
+							class="w-full border-2 border-solid border-black/10 bg-gray-100 p-2 py-3 rounded-md pr-10 pointer-events-none select-none"
 							id="date"
 							data-req="false"></div>
 						<ion-icon
@@ -353,24 +353,32 @@
 		</div>
 		<!--  -->
 		<div
-			id="install-popup"
-			style="
-				display: none;
-				position: fixed;
-				bottom: 20px;
-				right: 20px;
-				background: #fff;
-				padding: 10px;
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-			">
-			<p>آیا می‌خواهید اپلیکیشن ما را نصب کنید؟</p>
-			<button id="install-button">نصب اپلیکیشن</button>
-			<button id="close-button">بستن</button>
+			id="installModal"
+			class="fixed inset-0 h-fit border-b border-solid border-black/10 bg-gradient-to-br from-gray-300 to-white hidden justify-center items-center -translate-y-full opacity-0 z-99">
+			<div class="flex justify-between items-center w-full mb-0 cr">
+				<header class="flex items-center gap-2">
+					<div class="text-3xl text-primary flex justify-center items-center max-[480px]:hidden">
+						<ion-icon name="phone-portrait-outline"></ion-icon>
+					</div>
+					<div class="flex flex-col gap-1.5">
+						<h2 class="font-dana-bold font-bold">اپلیکیشن ویزتورا</h2>
+						<p class="text-sm text-black/80">همین حالا نصب کنید</p>
+					</div>
+				</header>
+				<div class="flex items-center gap-2">
+					<button
+						id="cancelInstall"
+						class="cursor-pointer bg-primary text-white w-20 h-10 rounded-2xl">
+						بعدا
+					</button>
+					<button
+						id="installBtn"
+						class="cursor-pointer bg-gray-300 text-black border border-solid border-black/30 w-20 h-10 rounded-2xl">
+						نصب
+					</button>
+				</div>
+			</div>
 		</div>
-		<!--  -->
-		<script
-			type="text/javascript"
-			src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 		<!--  -->
 		<script
 			type="module"

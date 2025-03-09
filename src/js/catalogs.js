@@ -32,12 +32,15 @@ export function showCatalogs() {
 		tr.classList.add("hidden", "text-nowrap", "opacity-0", "duration-200");
 		tr.setAttribute("data-catalogs", item.category);
 		tr.innerHTML = /*html*/ `
-			<td class="border border-solid border-black/10 py-4 px-2">${item.name}</td>
-			<td class="border border-solid border-black/10 py-4 px-2">${item.factory_price.toLocaleString("fa", "IR")}</td>
-			<td class="border border-solid border-black/10 py-4 px-2">${
+			<td class="border border-solid border-black/10 py-4 px-2 text-nowrap">${item.name}</td>
+			<td class="border border-solid border-black/10 py-4 px-2 text-nowrap">${item.factory_price.toLocaleString(
+				"fa",
+				"IR"
+			)}</td>
+			<td class="border border-solid border-black/10 py-4 px-2 text-nowrap">${
 				item.sell_price == item.factory_price ? "ویژه رستوران" : item.sell_price.toLocaleString("fa", "IR")
 			}</td>
-			<td class="border border-solid border-black/10 py-4 px-2">${item.category}</td>
+			<td class="border border-solid border-black/10 py-4 px-2 text-nowrap">${item.category}</td>
 		`;
 
 		if (tr.dataset.catalogs == dataCatalog) {

@@ -1,44 +1,51 @@
-import { products } from "./data";
-import { showAlert } from "./showAlert";
-import {
-	openNav,
-	closeNav,
-	navigation,
-	createInvoiceBtn,
-	closeProductListBtn,
-	closeInvoiceDetailBtn,
-	invoiceDetail,
-	addProductModal,
-} from "./modalsController";
-import domtoimage from "dom-to-image";
-import printJS from "print-js";
-import * as catalogs from "./catalogs";
+// Import necessary libraries and modules
+import domtoimage from "dom-to-image"; // Library to convert DOM elements to images
+import printJS from "print-js"; // Library to handle printing functionality
+import { products } from "./data"; // Import product data from a local file
+import { showAlert, colors } from "./showAlert"; // Import alert utility functions
+import * as modalsController from "./modalsController"; // Import modal control functions
+import { imgStatusChecker, linkStatusChecker } from "./loadCheckers"; // Import functions to check image and link statuses
+import * as installModal from "./installModal"; // Import installation modal functions
+import { dateElement, getNowDate } from "./getNowDate"; // Import date-related utilities
+import * as catalogs from "./catalogs"; // Import catalog-related functions
 
+// Select DOM elements for product categories, product lists, and other UI components
 const productCategories = document.querySelectorAll("[data-category]");
 const productsList = document.querySelector(".product-lists");
 const emptySection = document.querySelector(".empty-section");
 const next = document.querySelector("#next");
 const resultContainer = document.querySelector(".result-container");
 
-const colors = {
-	error: "#e11d48",
-	succses: "oklch(0.627 0.194 149.214)",
-};
+// Initialize variables to store product list data and invoice data
+let productListData = ""; // Stores the currently selected product category
+let invoiceData = {}; // Stores invoice details
 
-let productListData = "";
-let invoiceData = {};
+// Update the date element in the invoice detail page if it exists
+dateElement ? (dateElement.textContent = getNowDate()) : "";
 
-function productListController() {
+// Run image and link status checkers to ensure all resources are loaded correctly
+
+document.addEventListener("DOMContentLoaded", () => {
+	linkStatusChecker();
+});
+
+// Function to handle product category menu interactions
+function productsMenuController() {
 	productCategories.forEach((item) => {
+		// Automatically click the first category if it exists
 		productCategories[0] ? productCategories[0].click() : "";
 
+		// Add click event listener to each category
 		item.addEventListener("click", () => {
+			// Remove the 'active' class from the previously active category
 			if (item.parentNode.querySelector(".active")) {
 				item.parentNode.querySelector(".active").classList.remove("active");
 			}
+			// Set the current category and add the 'active' class
 			productListData = item.dataset.category;
 			item.classList.add("active");
 
+			// Show or hide product lists based on the selected category
 			const listCat = document.querySelectorAll("[data-hashtag]");
 			listCat.forEach((list) => {
 				list.classList.replace("flex", "hidden");
@@ -54,7 +61,8 @@ function productListController() {
 	});
 }
 
-function productShowCaser() {
+// Function to initialize and append products to the product list container
+function initProducts() {
 	products.forEach((item) => {
 		let li = document.createElement("li");
 		li.classList.add(
@@ -82,6 +90,9 @@ function productShowCaser() {
                                     	src="${item.img}"
 										alt="${item.name}"
 										class="rounded-md drop-shadow-2xl grayscale-50 w-full max-h-full object-cover" />
+									<div class="spinner flex justify-center items-center bg-black/90 absolute inset-0 w-full h-full py-10 top-0 right-0">
+										<div class="animate-spin w-12 h-12 border-3 border-solid border-primary border-b-transparent rounded-full"></div>
+									</div>
 								</div>
 								<div class="count-action overflow-hidden flex justify-between items-center border border-solid border-white/50 rounded-md">
 									<button class="increase p-2 w-12 flex justify-center items-center cursor-pointer bg-primary rounded-tr-md rounded-br-md">
@@ -119,7 +130,8 @@ function productShowCaser() {
 	});
 }
 
-function collapser() {
+// Function to handle collapsing and expanding product boxes
+function productBoxCollapser() {
 	const product = document.querySelectorAll("[data-hashtag] header");
 	product.forEach((item) => {
 		item.addEventListener("click", () => {
@@ -132,6 +144,7 @@ function collapser() {
 	});
 }
 
+// Event listener for increasing or decreasing product quantity
 productsList?.addEventListener("click", (e) => {
 	const target = e.target.closest(".increase, .reducer");
 	if (!target) return;
@@ -154,6 +167,7 @@ productsList?.addEventListener("click", (e) => {
 	inputField.value = value;
 });
 
+// Event listener to validate number inputs in the product list
 productsList?.querySelectorAll("input").forEach((item) => {
 	if (item.classList.contains("number-input")) {
 		item.addEventListener("input", () => {
@@ -167,37 +181,24 @@ productsList?.querySelectorAll("input").forEach((item) => {
 	}
 });
 
-const getDate = () => {
-	try {
-		return new Date().toLocaleDateString("fa-IR", {
-			month: "numeric",
-			weekday: "long",
-			day: "numeric",
-			hour: "2-digit",
-			minute: "2-digit",
-		});
-	} catch {
-		return new Date().toLocaleDateString;
-	}
-};
-if (document.querySelector("#date")) {
-	document.querySelector("#date").textContent = getDate();
-}
+// Event listener to save invoice details when the "Next" button is clicked
+next?.addEventListener("click", saveInvoiceDetails);
 
-next?.addEventListener("click", () => {
-	let date = document.querySelector("#date").textContent;
+// Function to save invoice details and validate inputs
+function saveInvoiceDetails() {
+	let date = dateElement.textContent;
 	let shopNameInput = document.querySelector("#shop-name");
 	let phoneInput = document.querySelector("#tel");
 	let discountInput = document.querySelector("#discount");
 	let addressInput = document.querySelector("#address");
 
 	if (!shopNameInput.value) {
-		showAlert("لطفا نام فروشگاه را وارد کنید", colors.error);
+		showAlert("نام فروشگاه وارد نشده است", colors.error);
 		return;
 	}
 
 	if (parseInt(discountInput.value) < 0 || parseInt(discountInput.value) > 100) {
-		showAlert("درصد تخفیف باید بین 1 الی 100 باشد", colors.error);
+		showAlert("تخفیف باید بین 1 الی 100 باشد", colors.error);
 		return;
 	}
 
@@ -210,19 +211,23 @@ next?.addEventListener("click", () => {
 		address: addressInput.value.trim(),
 	};
 
-	addProductModal.classList.remove("hidden");
+	modalsController.addProductModal.classList.remove("hidden");
 
+	// Reset invoice details after saving
 	shopNameInput.value = "";
 	phoneInput.value = "";
 	discountInput.value = "";
 	addressInput.value = "";
-});
+}
 
+// Initialize the application when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-	productShowCaser();
-	collapser();
-	productListController();
+	initProducts();
+	productBoxCollapser();
+	productsMenuController();
+	imgStatusChecker();
 
+	// Load stored invoices from localStorage
 	const storedInvoices = JSON.parse(localStorage.getItem("invoices") || "[]");
 	if (storedInvoices.length > 0) {
 		emptySection?.classList.add("hidden");
@@ -232,11 +237,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
+// Event listener to save the product list and create an invoice
 const saveProductListBtn = document.querySelector("#save-invoice");
 let invoices = JSON.parse(localStorage.getItem("invoices")) || [];
 let selectedProducts;
+saveProductListBtn?.addEventListener("click", createInvoiceCard);
 
-saveProductListBtn?.addEventListener("click", () => {
+function createInvoiceCard() {
 	selectedProducts = [];
 
 	const productItems = document.querySelectorAll(".product-lists li");
@@ -269,7 +276,7 @@ saveProductListBtn?.addEventListener("click", () => {
 	});
 
 	if (selectedProducts.length === 0) {
-		showAlert("هیچ محصولی انتخاب نشده", colors.error);
+		showAlert("محصولی وارد نشده است", colors.error);
 		return;
 	}
 
@@ -285,17 +292,20 @@ saveProductListBtn?.addEventListener("click", () => {
 
 	renderInvoice(newInvoice);
 
+	// Reset product list inputs and hide modals
 	document.querySelectorAll(".count-action input").forEach((input) => (input.value = null));
 	document.querySelectorAll(".product-info").forEach((div) => div.classList.replace("flex", "hidden"));
 
-	addProductModal.classList.add("hidden");
-	invoiceDetail.classList.add("hidden");
+	modalsController.addProductModal.classList.add("hidden");
+	modalsController.invoiceDetail.classList.add("hidden");
 	document.body.classList.remove("overflow-hidden");
 	showAlert("فاکتور با موفقیت ساخته شد", colors.succses);
-});
+}
 
+// Function to render an invoice card in the UI
 function renderInvoice(invoice) {
 	const invoiceCard = document.createElement("div");
+	invoiceCard.setAttribute("data-id", invoice.id);
 	invoiceCard.classList.add(
 		"card",
 		"rounded-md",
@@ -308,7 +318,6 @@ function renderInvoice(invoice) {
 		"flex-col",
 		"overflow-hidden"
 	);
-	invoiceCard.setAttribute("data-id", invoice.id);
 	invoiceCard.innerHTML = /*html*/ `
 					<header class="flex justify-between items-center border-b-2 border-solid border-black/10 p-4">
 						<div class="flex flex-col justify-between gap-4">
@@ -360,6 +369,7 @@ function renderInvoice(invoice) {
 
 	resultContainer?.prepend(invoiceCard);
 
+	// Event listener to delete an invoice
 	invoiceCard.querySelector(".delete-invoice").addEventListener("click", () => {
 		const invoiceId = parseInt(invoiceCard.getAttribute("data-id"), 10);
 
@@ -376,7 +386,7 @@ function renderInvoice(invoice) {
 	});
 }
 
-//
+// Search functionality to filter invoices by shop name
 const searchInput = document.querySelector("#search");
 
 searchInput?.addEventListener("input", () => {
@@ -395,7 +405,7 @@ searchInput?.addEventListener("input", () => {
 	}
 });
 
-// show print page
+// Event listener to handle printing and downloading invoices
 resultContainer?.addEventListener("click", (e) => {
 	const printBtn = e.target.closest(".print-invoice");
 	const downloadBtn = e.target.closest(".download-invoice");
@@ -408,9 +418,9 @@ resultContainer?.addEventListener("click", (e) => {
 	let storedInvoices = JSON.parse(localStorage.getItem("invoices")) || [];
 	const invoice = storedInvoices.find((inv) => inv.id == invoiceId);
 
-	let profit = invoice.totalSell - invoice.totalAmount;
-	let discounted = invoice.totalAmount - (invoice.totalAmount * invoice.discount) / 100;
-	let discountedProfit = profit + invoice.totalAmount - discounted;
+	let profitCalculator = invoice.totalSell - invoice.totalAmount;
+	let discountCalculator = invoice.totalAmount - (invoice.totalAmount * invoice.discount) / 100;
+	let totalProfitDiscount = profitCalculator + invoice.totalAmount - discountCalculator;
 
 	if (!invoice) {
 		showAlert("فاکتور مورد نظر یافت نشد", colors.error);
@@ -423,6 +433,7 @@ resultContainer?.addEventListener("click", (e) => {
 		downloadInvoiceAsImage(invoice, downloadBtn);
 	}
 
+	// Function to generate HTML for the invoice
 	function generateInvoiceHTML(invoice) {
 		return /*html*/ `
 					<div class="m-auto py-2 px-1 min-[580px]:p-5 mb-8">
@@ -431,8 +442,8 @@ resultContainer?.addEventListener("click", (e) => {
 								<div class="flex">
 									<img src="/images/logo.png" alt="لوگو طراوت" class="w-16"/>
 								</div>
-								<div class="flex flex-col items-end gap-3 text-xs">
-									<div class="flex gap-1">
+								<div class="flex flex-col gap-3 text-xs">
+									<div class="flex gap-1 justify-between">
 										<span>تاریخ ثبت:</span>
 										<span class="font-bold">${invoice.date}</span>
 									</div>
@@ -443,8 +454,8 @@ resultContainer?.addEventListener("click", (e) => {
 								</div>
 							</div>
 							<!--  -->
-							<div class="text-center mb-2">
-								<h2	class="font-bold text-2xl">فاکتور فروش</h2>
+							<div class="text-center mb-4">
+								<h2	class="font-bold font-dana-bold text-2xl">فاکتور فروش</h2>
 							</div>
 							<div class="flex flex-col gap-3 text-xs">
 								<div class="flex justify-between items-center gap-3">
@@ -499,32 +510,32 @@ resultContainer?.addEventListener("click", (e) => {
 								.join("")}
 							</tbody>
 						</table>
-					<div class="flex flex-col gap-4 mb-5 mt-5">
-						<div class="flex flex-col justify-between gap-4 text-sm min-[580px]:text-lg min-[580px]:flex-row">
-							<div class="flex items-center gap-1">
+					<div class="flex flex-col items-end justify-end w-full gap-4 mb-5 mt-5 pl-2">
+						<div class="flex flex-col gap-4 text-sm min-[580px]:text-lg">
+							<div class="flex items-center justify-between gap-2">
 								<span>جمع کل خرید:</span>
-								<span class="font-bold">${invoice.totalAmount.toLocaleString("fa-IR")} <small class="text-[0.6rem]">ریال</small></span>
+								<span class="font-bold text-left">${invoice.totalAmount.toLocaleString(
+									"fa-IR"
+								)} <small class="text-[0.6rem]">ریال</small></span>
 							</div>
-							<div class="flex items-center gap-1">
+							<div class="flex items-center justify-between gap-2">
 								<span>سود شما از خرید:</span>
-								<span class="font-bold">${
+								<span class="font-bold text-left">${
 									invoice.discount == "" || 0
-										? profit.toLocaleString("fa-IR")
-										: discountedProfit.toLocaleString("fa-IR")
+										? profitCalculator.toLocaleString("fa-IR")
+										: totalProfitDiscount.toLocaleString("fa-IR")
 								} <small class="text-[0.6rem]">ریال</small></span>
 							</div>
-						</div>
-						<div class="flex flex-col justify-between gap-4 text-sm min-[580px]:text-lg min-[580px]:flex-row">
-							<div class="items-center gap-1 ${invoice.discount == "" || 0 ? "hidden" : "flex"}">
-								<span >درصد تخفیف:</span>
-								<span class="font-bold">${invoice.discount}%</span>
+							<div class="text-nowrap items-center justify-between gap-2 ${invoice.discount == "" || 0 ? "hidden" : "flex"}">
+								<span>تخفیف اعمال شده:</span>
+								<span class="font-bold w-full text-center">${invoice.discount}%</span>
 							</div>
-							<div class="flex items-center gap-1">
-								<span>${invoice.discount == "" || 0 ? "مبلغ قابل پرداخت:" : "مبلغ پرداخت پس از تخفیف:"}</span>
-								<span class="font-bold">${
+							<div class="flex items-center justify-between gap-2">
+								<span>${invoice.discount == "" || 0 ? "مبلغ قابل پرداخت:" : "مبلغ نهایی پرداخت:"}</span>
+								<span class="font-bold text-left">${
 									invoice.discount == "" || 0
 										? invoice.totalAmount.toLocaleString("fa-IR")
-										: discounted.toLocaleString("fa-IR")
+										: discountCalculator.toLocaleString("fa-IR")
 								} <small class="text-[0.6rem]">ریال</small></span>
 							</div>
 						</div>
@@ -539,11 +550,12 @@ resultContainer?.addEventListener("click", (e) => {
 							<small class="leading-4">توجه سود شما از خرید بدون احتساب قیمت فروش محصولات رستورانی می باشد.</small>
 						</div>
 						<!--  -->
-						<p class="mt-10 mb-5 text-[0.5rem] text-center">*تولید شده توسط فاکتور ساز طراوت*</p>
+						<p class="mt-10 pb-5 text-[0.5rem] font-bold text-center">powered by vistora - invoice creator</p>
 					</footer>
 		`;
 	}
 
+	// Function to print the invoice
 	function printInvoice(invoice) {
 		let printSection = document.createElement("div");
 		printSection.id = "printSection";
@@ -553,7 +565,7 @@ resultContainer?.addEventListener("click", (e) => {
 		printJS({
 			printable: "printSection",
 			type: "html",
-			css: "/assets/main-bJQ6UVfv.css",
+			css: "/assets/main-qTiQ2BpS.css",
 			scanStyles: false,
 			style: `
 					body{
@@ -567,6 +579,7 @@ resultContainer?.addEventListener("click", (e) => {
 		}, 1000);
 	}
 
+	// Function to download the invoice as an image
 	function downloadInvoiceAsImage(invoice, button) {
 		const tempContainer = document.createElement("div");
 		tempContainer.classList.add("opacity-0");
@@ -603,61 +616,3 @@ resultContainer?.addEventListener("click", (e) => {
 		}, 500);
 	}
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-	document.querySelectorAll(".product-img img").forEach((img) => {
-		img.onerror = function () {
-			this.onerror = null;
-			this.src = "/images/img-error.jpg";
-			this.classList.add("animate-pulse");
-		};
-	});
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-	document.querySelectorAll(".link").forEach((link) => {
-		let linkPath = link.pathname;
-		if (window.location.pathname == linkPath) {
-			link.classList.add("text-primary", "after:w-full", "after:right-0");
-		}
-
-		link.addEventListener("click", (e) => {
-			if (window.location.pathname == linkPath) {
-				e.preventDefault();
-				document.body.scrollIntoView(link);
-			}
-		});
-	});
-});
-
-//
-let deferredPrompt;
-
-window.addEventListener("beforeinstallprompt", (e) => {
-	// جلوگیری از نمایش خودکار پاپ‌آپ
-	e.preventDefault();
-	// ذخیره رویداد برای استفاده بعدی
-	deferredPrompt = e;
-	// نمایش دکمه یا پاپ‌آپ نصب
-	showInstallPromotion();
-});
-
-function showInstallPromotion() {
-	// اینجا می‌توانید یک پاپ‌آپ یا دکمه برای نصب نمایش دهید
-	const installButton = document.getElementById("install-button");
-	installButton.style.display = "block";
-
-	installButton.addEventListener("click", () => {
-		// نمایش درخواست نصب به کاربر
-		deferredPrompt.prompt();
-		// منتظر پاسخ کاربر بمانید
-		deferredPrompt.userChoice.then((choiceResult) => {
-			if (choiceResult.outcome === "accepted") {
-				console.log("کاربر نصب را پذیرفت");
-			} else {
-				console.log("کاربر نصب را رد کرد");
-			}
-			deferredPrompt = null;
-		});
-	});
-}
