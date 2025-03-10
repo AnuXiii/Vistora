@@ -592,7 +592,7 @@ resultContainer?.addEventListener("click", (e) => {
 		printJS({
 			printable: "printSection",
 			type: "html",
-			css: "/dist/assets/main-Qu4RgN68.css",
+			css: "/assets/main-Qu4RgN68.css",
 			scanStyles: false,
 			style: `
 					body{
