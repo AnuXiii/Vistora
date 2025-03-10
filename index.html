@@ -46,85 +46,13 @@
 		<link
 			rel="stylesheet"
 			href="/src/css/style.css" />
-		<!--  -->
 	</head>
 	<body class="bg-slate-50">
 		<div
 			id="app"
 			role="application"
 			class="print:hidden">
-			<header class="cr max-[480px]:mb-8">
-				<div class="flex justify-between items-center">
-					<div class="flex justify-center items-center">
-						<a
-							href="/"
-							title="صفحه اصلی"
-							aria-label="صفحه اصلی"
-							role="link"
-							class="logo">
-						</a>
-					</div>
-					<div class="flex">
-						<nav role="navigation">
-							<button
-								id="openNav"
-								class="flex justify-center items-center gap-2 text-4xl text-primary min-[580px]:hidden">
-								<ion-icon name="grid-outline"></ion-icon>
-							</button>
-							<ul
-								id="navigation"
-								class="flex gap-8 items-center"
-								role="list">
-								<button
-									id="closeNav"
-									class="justify-end items-center gap-2 text-4xl text-primary hidden max-[580px]:flex">
-									<ion-icon name="close-outline"></ion-icon>
-								</button>
-								<li role="listitem">
-									<a
-										href="/"
-										class="link"
-										title="صفحه اصلی"
-										aria-label="صفحه اصلی"
-										role="link"
-										>صفحه اصلی</a
-									>
-								</li>
-								<li role="listitem">
-									<a
-										href="pages/education.html"
-										class="link"
-										title="آموزش"
-										aria-label="آموزش"
-										role="link"
-										>آموزش</a
-									>
-								</li>
-								<li role="listitem">
-									<a
-										href="pages/catalogs.html"
-										class="link"
-										title="کاتالوگ"
-										aria-label="کاتالوگ"
-										role="link"
-										>کاتالوگ</a
-									>
-								</li>
-								<li role="listitem">
-									<a
-										href="pages/about.html"
-										class="link"
-										title="درباره"
-										aria-label="درباره"
-										role="link"
-										>درباره ما</a
-									>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</header>
+			<v-header></v-header>
 			<!--  -->
 			<main
 				role="main"
@@ -135,7 +63,7 @@
 						name="search"
 						id="search"
 						placeholder="جستجو بر اساس نام"
-						class="border-2 border-solid border-black/10 rounded-md w-full p-4 pl-10 appearance-none outline-none shadow-lg shadow-black/5 focus:border-primary" />
+						class="border-2 border-solid border-black/10 rounded-md w-full p-4 pl-10 appearance-none outline-none shadow-lg shadow-black/5 focus:border-primary placeholder:opacity-100" />
 					<ion-icon
 						name="search-outline"
 						class="absolute left-3 text-2xl"></ion-icon>
@@ -197,7 +125,7 @@
 							placeholder="نام فروشگاه"
 							id="shop-name"
 							name="shop-name"
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary"
+							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none font-bold placeholder:font-normal focus:border-primary placeholder:opacity-100"
 							data-req="true"
 							autocomplete="name" />
 						<ion-icon
@@ -210,7 +138,7 @@
 							placeholder="شماره تلفن (اختیاری)"
 							id="tel"
 							name="tel"
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:text-right"
+							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none font-bold placeholder:font-normal focus:border-primary placeholder:opacity-100 placeholder:text-right"
 							data-req="false"
 							autocomplete="tel" />
 						<ion-icon
@@ -224,7 +152,7 @@
 							placeholder="درصد تخفیف (اختیاری)"
 							id="discount"
 							name="discount"
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary"
+							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none font-bold placeholder:font-normal focus:border-primary placeholder:opacity-100"
 							data-req="false"
 							autocomplete="off" />
 						<ion-icon
@@ -238,7 +166,7 @@
 							placeholder=" آدرس فروشگاه (اختیاری)"
 							id="address"
 							name="address"
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary"
+							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none font-bold placeholder:font-normal focus:border-primary placeholder:opacity-100"
 							data-req="false"
 							autocomplete="street-address" />
 						<ion-icon
@@ -274,6 +202,14 @@
 						id="save-invoice"
 						class="bg-blue-600 w-full flex justify-center items-center text-white text-2xl p-4">
 						<ion-icon name="save-outline"></ion-icon>
+					</button>
+				</div>
+				<div class="flex">
+					<button
+						title="بازگشت به عقب"
+						id="back-button"
+						class="bg-blue-800 w-full flex justify-center items-center text-white text-2xl p-4">
+						<ion-icon name="arrow-forward-outline"></ion-icon>
 					</button>
 				</div>
 			</header>
@@ -354,7 +290,7 @@
 		<!--  -->
 		<div
 			id="installModal"
-			class="fixed inset-0 h-fit border-b border-solid border-black/10 bg-gradient-to-br from-gray-300 to-white hidden justify-center items-center -translate-y-full opacity-0 z-99">
+			class="fixed top-[-9%] right-0 w-full h-fit border-b border-solid border-black/10 bg-gray-300 bg-gradient-to-br from-gray-300 to-white hidden justify-center items-center opacity-0 z-99">
 			<div class="flex justify-between items-center w-full mb-0 cr">
 				<header class="flex items-center gap-2">
 					<div class="text-3xl text-primary flex justify-center items-center max-[480px]:hidden">
@@ -362,7 +298,7 @@
 					</div>
 					<div class="flex flex-col gap-1.5">
 						<h2 class="font-dana-bold font-bold">اپلیکیشن ویزتورا</h2>
-						<p class="text-sm text-black/80">همین حالا نصب کنید</p>
+						<p class="text-sm text-black/80">هم اکنون نصب کنید</p>
 					</div>
 				</header>
 				<div class="flex items-center gap-2">

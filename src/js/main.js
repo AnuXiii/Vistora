@@ -3,6 +3,7 @@ import domtoimage from "dom-to-image"; // Library to convert DOM elements to ima
 import printJS from "print-js"; // Library to handle printing functionality
 import { products } from "./data"; // Import product data from a local file
 import { showAlert, colors } from "./showAlert"; // Import alert utility functions
+import * as component from "./components";
 import * as modalsController from "./modalsController"; // Import modal control functions
 import { imgStatusChecker, linkStatusChecker } from "./loadCheckers"; // Import functions to check image and link statuses
 import * as installModal from "./installModal"; // Import installation modal functions
@@ -14,6 +15,7 @@ const productCategories = document.querySelectorAll("[data-category]");
 const productsList = document.querySelector(".product-lists");
 const emptySection = document.querySelector(".empty-section");
 const next = document.querySelector("#next");
+const back = document.querySelector("#back-button");
 const resultContainer = document.querySelector(".result-container");
 
 // Initialize variables to store product list data and invoice data
@@ -84,13 +86,13 @@ function initProducts() {
 							<ion-icon name="ellipsis-vertical-outline" class="text-white"></ion-icon>
 							</header>
 							<div class="product-info flex-col gap-4 hidden">
-								<div class="product-img relative">
+								<div class="product-img relative rounded-md bg-primary/20 bg-[url(/images/product-bg.webp)] bg-repeat-round bg-contain">
 									<img
 										loading="lazy"
                                     	src="${item.img}"
 										alt="${item.name}"
-										class="rounded-md drop-shadow-2xl grayscale-50 w-full max-h-full object-cover" />
-									<div class="spinner flex justify-center items-center bg-black/90 absolute inset-0 w-full h-full py-10 top-0 right-0">
+										class="rounded-md drop-shadow-2xl grayscale-50 w-120 max-w-full mx-auto object-cover" />
+									<div class="spinner flex justify-center items-center bg-black/90 absolute inset-0 w-full h-full top-0 right-0">
 										<div class="animate-spin w-12 h-12 border-3 border-solid border-primary border-b-transparent rounded-full"></div>
 									</div>
 								</div>
@@ -103,7 +105,7 @@ function initProducts() {
 									<input
 										type="number"
 										placeholder="تعداد"
-										class="number-input w-full text-center border-none outline-none" />
+										class="number-input w-full text-center border-none outline-none placeholder:opacity-100" />
 									<button class="reducer p-2 w-12 flex justify-center items-center cursor-pointer bg-primary rounded-tl-md rounded-bl-md">
 										<ion-icon
 											name="remove-outline"
@@ -182,15 +184,21 @@ productsList?.querySelectorAll("input").forEach((item) => {
 });
 
 // Event listener to save invoice details when the "Next" button is clicked
+let date;
+let shopNameInput;
+let phoneInput;
+let discountInput;
+let addressInput;
+
 next?.addEventListener("click", saveInvoiceDetails);
 
 // Function to save invoice details and validate inputs
 function saveInvoiceDetails() {
-	let date = dateElement.textContent;
-	let shopNameInput = document.querySelector("#shop-name");
-	let phoneInput = document.querySelector("#tel");
-	let discountInput = document.querySelector("#discount");
-	let addressInput = document.querySelector("#address");
+	date = dateElement.textContent;
+	shopNameInput = document.querySelector("#shop-name");
+	phoneInput = document.querySelector("#tel");
+	discountInput = document.querySelector("#discount");
+	addressInput = document.querySelector("#address");
 
 	if (!shopNameInput.value) {
 		showAlert("نام فروشگاه وارد نشده است", colors.error);
@@ -218,6 +226,18 @@ function saveInvoiceDetails() {
 	phoneInput.value = "";
 	discountInput.value = "";
 	addressInput.value = "";
+}
+
+// Event listener to back to invoice details when the "Back" button is clicked
+back?.addEventListener("click", backToInvoiceDetails);
+
+function backToInvoiceDetails() {
+	modalsController.addProductModal.classList.add("hidden");
+	modalsController.invoiceDetail.classList.remove("hidden");
+	invoiceData.shopName == "" || 0 ? (shopNameInput.value = "") : (shopNameInput.value = invoiceData.shopName);
+	invoiceData.phone == "" || 0 ? (phoneInput.value = "") : (phoneInput.value = invoiceData.phone);
+	invoiceData.discount == "" || 0 ? (discountInput.value = "") : (discountInput.value = invoiceData.discount);
+	invoiceData.address == "" || 0 ? (addressInput.value = "") : (addressInput.value = invoiceData.address);
 }
 
 // Initialize the application when the DOM is fully loaded
@@ -295,11 +315,12 @@ function createInvoiceCard() {
 	// Reset product list inputs and hide modals
 	document.querySelectorAll(".count-action input").forEach((input) => (input.value = null));
 	document.querySelectorAll(".product-info").forEach((div) => div.classList.replace("flex", "hidden"));
-
 	modalsController.addProductModal.classList.add("hidden");
 	modalsController.invoiceDetail.classList.add("hidden");
 	document.body.classList.remove("overflow-hidden");
 	showAlert("فاکتور با موفقیت ساخته شد", colors.succses);
+	// autoClick on first category menu after saveing and invoice created
+	productCategories[0] ? productCategories[0].click() : null;
 }
 
 // Function to render an invoice card in the UI
@@ -316,8 +337,11 @@ function renderInvoice(invoice) {
 		"border-black/10",
 		"flex",
 		"flex-col",
-		"overflow-hidden"
+		"overflow-hidden",
+		"opacity-50",
+		"duration-200"
 	);
+
 	invoiceCard.innerHTML = /*html*/ `
 					<header class="flex justify-between items-center border-b-2 border-solid border-black/10 p-4">
 						<div class="flex flex-col justify-between gap-4">
@@ -330,7 +354,7 @@ function renderInvoice(invoice) {
 								<p class="font-bold text-sm">${invoice.date}</p>
 							</div>
 						</div>
-						<div class="flex">
+						<div class="flex relative">
 							<button title="دانلود عکس فاکتور" aria-label="دانلود عکس فاکتور" class="download-invoice text-5xl flex justify-center items-center text-blue-500 cursor-pointer">
 								<ion-icon name="image-outline"></ion-icon>
 							</button>
@@ -368,6 +392,9 @@ function renderInvoice(invoice) {
 	`;
 
 	resultContainer?.prepend(invoiceCard);
+	setTimeout(() => {
+		invoiceCard.classList.replace("opacity-50", "opacity-100");
+	}, 500);
 
 	// Event listener to delete an invoice
 	invoiceCard.querySelector(".delete-invoice").addEventListener("click", () => {
@@ -526,9 +553,9 @@ resultContainer?.addEventListener("click", (e) => {
 										: totalProfitDiscount.toLocaleString("fa-IR")
 								} <small class="text-[0.6rem]">ریال</small></span>
 							</div>
-							<div class="text-nowrap items-center justify-between gap-2 ${invoice.discount == "" || 0 ? "hidden" : "flex"}">
+							<div class="items-center justify-between gap-2 ${invoice.discount == "" || 0 ? "hidden" : "flex"}">
 								<span>تخفیف اعمال شده:</span>
-								<span class="font-bold w-full text-center">${invoice.discount}%</span>
+								<span class="font-bold text-center">${invoice.discount}%</span>
 							</div>
 							<div class="flex items-center justify-between gap-2">
 								<span>${invoice.discount == "" || 0 ? "مبلغ قابل پرداخت:" : "مبلغ نهایی پرداخت:"}</span>
@@ -565,7 +592,7 @@ resultContainer?.addEventListener("click", (e) => {
 		printJS({
 			printable: "printSection",
 			type: "html",
-			css: "/assets/main-qTiQ2BpS.css",
+			css: "/src/css/style.css",
 			scanStyles: false,
 			style: `
 					body{
@@ -587,7 +614,7 @@ resultContainer?.addEventListener("click", (e) => {
 		document.body.appendChild(tempContainer);
 
 		const invoiceElement = tempContainer.querySelector("#invoice-content");
-		button.classList.add("animate-pulse");
+		button.classList.add("animate-pulse", "pointer-events-none");
 		document.body.classList.add("overflow-hidden");
 
 		const options = {
@@ -606,11 +633,11 @@ resultContainer?.addEventListener("click", (e) => {
 					link.click();
 					document.body.removeChild(tempContainer);
 					document.body.classList.remove("overflow-hidden");
-					button.classList.remove("animate-pulse");
+					button.classList.remove("animate-pulse", "pointer-events-none");
 				})
 				.catch(() => {
 					document.body.removeChild(tempContainer);
-					button.classList.remove("animate-pulse");
+					button.classList.remove("animate-pulse", "pointer-events-none");
 					showAlert("خطا در دانلود عکس لطفا دوباره امتحان کنید", colors.error);
 				});
 		}, 500);

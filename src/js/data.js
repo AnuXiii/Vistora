@@ -225,6 +225,20 @@ export const products = [
 	},
 	{
 		category: "yogurt",
+		name: "ماست 100 گرمی کم چرب",
+		factory_price: 42000,
+		sell_price: 42000,
+		img: "/images/mini-yogurt.webp",
+	},
+	{
+		category: "yogurt",
+		name: "ماست 100 گرمی پر چرب",
+		factory_price: 42000,
+		sell_price: 42000,
+		img: "/images/mini-yogurt.webp",
+	},
+	{
+		category: "yogurt",
 		name: "ماست 450 گرمی کم چرب",
 		factory_price: 200000,
 		sell_price: 250000,

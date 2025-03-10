@@ -21,7 +21,7 @@
 	@keyframes bounce {
 		to {
 			opacity: 1;
-			transform: translateY(100%);
+			top: 0;
 		}
 	}
 }
@@ -117,17 +117,11 @@
 
 /* invoice content for download invoice as image */
 #invoice-content {
-	width: 1920px;
+	width: 1080px;
+	aspect-ratio: 1 / 1;
 	transform: scale(1);
 	transform-origin: top left;
 	background-color: var(--color-white);
-}
-
-@media (max-width: 991px) {
-	#invoice-content {
-		width: 991px;
-		min-height: 100vh;
-	}
 }
 
 #printSection {

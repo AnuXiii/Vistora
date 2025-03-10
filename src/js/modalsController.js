@@ -24,6 +24,10 @@ createInvoiceBtn?.addEventListener("click", () => {
 });
 
 closeInvoiceDetailBtn?.addEventListener("click", () => {
+	// reset invoice details values after clicking close invoice detail modal
+	document.querySelectorAll("[data-req]").forEach((item) => {
+		item.value = "";
+	});
 	invoiceDetail.classList.add("hidden");
 	document.body.classList.remove("overflow-hidden");
 });
