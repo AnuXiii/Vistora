@@ -13,5 +13,5 @@ export const showAlert = (msg, type) => {
 
 export const colors = {
 	error: "#e11d48",
-	succses: "oklch(0.627 0.194 149.214)",
+	succses: "#00a63e",
 };

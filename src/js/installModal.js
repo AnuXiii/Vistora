@@ -1,7 +1,7 @@
 let deferredPrompt;
-const installModal = document.querySelector("#installModal");
-const installBtn = document.querySelector("#installBtn");
-const cancelInstall = document.querySelector("#cancelInstall");
+const installModal = document.getElementById("installModal");
+const installBtn = document.getElementById("installBtn");
+const cancelInstall = document.getElementById("cancelInstall");
 
 if (installModal) {
 	if (navigator.userAgent.toLowerCase().includes("firefox")) {

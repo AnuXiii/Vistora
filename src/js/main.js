@@ -11,12 +11,13 @@ import { dateElement, getNowDate } from "./getNowDate"; // Import date-related u
 import * as catalogs from "./catalogs"; // Import catalog-related functions
 
 // Select DOM elements for product categories, product lists, and other UI components
-const productCategories = document.querySelectorAll("[data-category]");
+export const productCategories = document.querySelectorAll("[data-category]");
 const productsList = document.querySelector(".product-lists");
 const emptySection = document.querySelector(".empty-section");
-const next = document.querySelector("#next");
-const back = document.querySelector("#back-button");
+const next = document.getElementById("next");
+const back = document.getElementById("back-button");
 const resultContainer = document.querySelector(".result-container");
+const invoicePreview = document.querySelector(".invoice-preview");
 
 // Initialize variables to store product list data and invoice data
 let productListData = ""; // Stores the currently selected product category
@@ -25,8 +26,7 @@ let invoiceData = {}; // Stores invoice details
 // Update the date element in the invoice detail page if it exists
 dateElement ? (dateElement.textContent = getNowDate()) : "";
 
-// Run image and link status checkers to ensure all resources are loaded correctly
-
+// Run link status checker to ensure all resources are loaded correctly
 document.addEventListener("DOMContentLoaded", () => {
 	linkStatusChecker();
 });
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function productsMenuController() {
 	productCategories.forEach((item) => {
 		// Automatically click the first category if it exists
-		productCategories[0] ? productCategories[0].click() : "";
+		productCategories[0] ? productCategories[0].click() : null;
 
 		// Add click event listener to each category
 		item.addEventListener("click", () => {
@@ -56,7 +56,7 @@ function productsMenuController() {
 				if (productListData == list.dataset.hashtag) {
 					list.classList.replace("hidden", "flex");
 					list.classList.add("fade-in");
-					document.querySelector("#top").scrollIntoView({ behavior: "smooth" });
+					document.getElementById("top").scrollIntoView({ behavior: "smooth" });
 				}
 			});
 		});
@@ -66,26 +66,15 @@ function productsMenuController() {
 // Function to initialize and append products to the product list container
 function initProducts() {
 	products.forEach((item) => {
-		let li = document.createElement("li");
-		li.classList.add(
-			"hidden",
-			"flex-col",
-			"justify-between",
-			"gap-4",
-			"text-white",
-			"w-full",
-			"p-4",
-			"bg-black",
-			"cursor-pointer",
-			"h-fit"
-		);
+		const li = document.createElement("li");
+		li.classList.add("hidden", "flex-col", "justify-between", "text-white", "w-full", "bg-black", "h-fit");
 		li.setAttribute("data-hashtag", `${item.category}`);
 		li.innerHTML = /*htm*/ `
-							<header class="py-2 flex justify-between items-center select-none">
+							<header class="cursor-pointer py-6 px-4 flex justify-between items-center select-none">
 								<span class="text-xs">${item.name}</span>
 							<ion-icon name="ellipsis-vertical-outline" class="text-white"></ion-icon>
 							</header>
-							<div class="product-info flex-col gap-4 hidden">
+							<div class="p-4 pb-6 product-info flex-col gap-6 hidden">
 								<div class="product-img relative rounded-md bg-primary/20 bg-[url(/images/product-bg.webp)] bg-repeat-round bg-contain">
 									<img
 										loading="lazy"
@@ -195,10 +184,10 @@ next?.addEventListener("click", saveInvoiceDetails);
 // Function to save invoice details and validate inputs
 function saveInvoiceDetails() {
 	date = dateElement.textContent;
-	shopNameInput = document.querySelector("#shop-name");
-	phoneInput = document.querySelector("#tel");
-	discountInput = document.querySelector("#discount");
-	addressInput = document.querySelector("#address");
+	shopNameInput = document.getElementById("shop-name");
+	phoneInput = document.getElementById("tel");
+	discountInput = document.getElementById("discount");
+	addressInput = document.getElementById("address");
 
 	if (!shopNameInput.value) {
 		showAlert("نام فروشگاه وارد نشده است", colors.error);
@@ -212,7 +201,7 @@ function saveInvoiceDetails() {
 
 	invoiceData = {
 		id: Date.now(),
-		date,
+		date: dateElement.textContent,
 		shopName: shopNameInput.value.trim(),
 		phone: phoneInput.value.trim(),
 		discount: Number(discountInput.value),
@@ -222,10 +211,7 @@ function saveInvoiceDetails() {
 	modalsController.addProductModal.classList.remove("hidden");
 
 	// Reset invoice details after saving
-	shopNameInput.value = "";
-	phoneInput.value = "";
-	discountInput.value = "";
-	addressInput.value = "";
+	document.querySelectorAll("[data-req]").forEach((input) => (input.value = null));
 }
 
 // Event listener to back to invoice details when the "Back" button is clicked
@@ -258,17 +244,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Event listener to save the product list and create an invoice
-const saveProductListBtn = document.querySelector("#save-invoice");
+const saveProductListBtn = document.getElementById("save-invoice");
 let invoices = JSON.parse(localStorage.getItem("invoices")) || [];
-let selectedProducts;
+let selectedProducts = [];
+let currentInvoiceId = null;
+let totalAmount = 0;
+let totalSell = 0;
+//
 saveProductListBtn?.addEventListener("click", createInvoiceCard);
 
 function createInvoiceCard() {
 	selectedProducts = [];
+	currentInvoiceId = Date.now();
 
 	const productItems = document.querySelectorAll(".product-lists li");
-	let totalAmount = 0;
-	let totalSell = 0;
+	totalAmount = 0;
+	totalSell = 0;
 
 	productItems.forEach((item) => {
 		const productName = item.querySelector("header span").textContent;
@@ -300,27 +291,67 @@ function createInvoiceCard() {
 		return;
 	}
 
+	selectedProducts.forEach((item) => {
+		const tr = document.createElement("tr");
+		tr.className = "product-preview";
+		tr.innerHTML = /*html*/ `
+			<td class="border border-solid border-white text-center p-4">${item.name}</td>
+			<td class="border border-solid border-white text-center p-4">${item.count}</td>
+		`;
+		invoicePreview.querySelector("table").appendChild(tr);
+	});
+	invoicePreview.classList.remove("hidden");
+}
+
+// فقط یک بار این رویدادها را اضافه کن
+document.querySelector(".save")?.addEventListener("click", handleSaveInvoice);
+document.querySelector(".unsave")?.addEventListener("click", handleUnsaveInvoice);
+
+function handleSaveInvoice() {
+	if (!currentInvoiceId || selectedProducts.length === 0) {
+		showAlert("خطا در ذخیره‌سازی فاکتور!", colors.error);
+		return;
+	}
+
+	// اطلاعات فاکتور جدید
 	const newInvoice = {
+		id: currentInvoiceId,
 		...invoiceData,
 		products: selectedProducts,
 		totalAmount,
 		totalSell,
 	};
 
-	invoices.push(newInvoice);
+	// بررسی اینکه آیا این فاکتور قبلاً در لیست وجود دارد
+	const existingInvoiceIndex = invoices.findIndex((inv) => inv.id === newInvoice.id);
+	if (existingInvoiceIndex !== -1) {
+		// فاکتور موجود است، آن را به‌روزرسانی کن
+		invoices[existingInvoiceIndex] = newInvoice;
+	} else {
+		// فاکتور جدید است، آن را اضافه کن
+		invoices.push(newInvoice);
+	}
+
+	// ذخیره در LocalStorage
 	localStorage.setItem("invoices", JSON.stringify(invoices));
 
+	// نمایش فاکتور در صفحه
 	renderInvoice(newInvoice);
 
-	// Reset product list inputs and hide modals
-	document.querySelectorAll(".count-action input").forEach((input) => (input.value = null));
-	document.querySelectorAll(".product-info").forEach((div) => div.classList.replace("flex", "hidden"));
+	// پاک کردن داده‌های ورودی و بستن مودال
+	modalsController.dataCleaner();
 	modalsController.addProductModal.classList.add("hidden");
 	modalsController.invoiceDetail.classList.add("hidden");
 	document.body.classList.remove("overflow-hidden");
-	showAlert("فاکتور با موفقیت ساخته شد", colors.succses);
-	// autoClick on first category menu after saveing and invoice created
-	productCategories[0] ? productCategories[0].click() : null;
+
+	showAlert("فاکتور با موفقیت ذخیره شد", colors.succses);
+	invoicePreview.classList.add("hidden");
+	invoicePreview.querySelectorAll(".product-preview").forEach((item) => item.remove());
+}
+
+function handleUnsaveInvoice() {
+	invoicePreview.classList.add("hidden");
+	invoicePreview.querySelectorAll(".product-preview").forEach((item) => item.remove());
 }
 
 // Function to render an invoice card in the UI
@@ -371,13 +402,21 @@ function renderInvoice(invoice) {
 						</div>
 
 					</div>
-					<footer class="flex justify-between items-center">
+					<footer class="flex justify-between items-center divide-x-2 divide-solid divide-white">
 						<div class="flex w-full">
 							<button
 								class="delete-invoice flex justify-center items-center w-full bg-primary text-white text-2xl p-4 max-[480px]:p-3"
 								title="حذف"
 								aria-label="حذف">
 								<ion-icon name="trash-outline"></ion-icon>
+							</button>
+						</div>
+						<div class="flex w-full">
+							<button
+								class="edit-invoice flex justify-center items-center w-full bg-blue-800 text-white text-2xl p-4 max-[480px]:p-3"
+								title="ویرایش"
+								aria-label="ویرایش">
+								<ion-icon name="pencil-outline"></ion-icon>
 							</button>
 						</div>
 						<div class="flex w-full">
@@ -414,7 +453,7 @@ function renderInvoice(invoice) {
 }
 
 // Search functionality to filter invoices by shop name
-const searchInput = document.querySelector("#search");
+const searchInput = document.getElementById("search");
 
 searchInput?.addEventListener("input", () => {
 	const query = searchInput.value.trim().toLowerCase();
@@ -502,35 +541,31 @@ resultContainer?.addEventListener("click", (e) => {
 						<table class="table w-full border-collapse text-center text-[0.6rem] min-[580px]:text-sm text-xs">
 							<tbody style="page-break-before: auto; page-break-after: auto;">
 							<tr class="break-inside-avoid table-row">
-									<th class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">نام محصول</th>
-									<th class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">تعداد</th>
-									<th class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">قیمت خرید</th>
-									<th class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">قیمت فروش</th>
-									<th class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">جمع کل خرید</th>
-									<th class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">جمع کل فروش</th>
+									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">ردیف</th>
+									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">نام محصول</th>
+									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">تعداد</th>
+									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">قیمت خرید</th>
+									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">قیمت فروش</th>
+									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">جمع کل خرید</th>
 							</tr>
 							${invoice.products
 								.map(
-									(product) => `
+									(product, index) => /*html*/ `
 									<tr class="break-inside-avoid table-row">
-										<td class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">${product.name}</td>
-										<td class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">${product.count}</td>
-										<td class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">${product.factoryPrice.toLocaleString(
+										<td class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">${index + 1}</td>
+										<td class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">${product.name}</td>
+										<td class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">${product.count}</td>
+										<td class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">${product.factoryPrice.toLocaleString(
 											"fa-IR"
 										)}</td>
-										<td class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">${
+										<td class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">${
 											product.sellPrice == product.factoryPrice
 												? "ویژه رستوران"
 												: product.sellPrice.toLocaleString("fa-IR")
 										}</td>
-										<td class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">${product.factoryTotal.toLocaleString(
+										<td class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">${product.factoryTotal.toLocaleString(
 											"fa-IR"
 										)}</td>
-										<td class="table-cell border border-solid border-black text-center p-0.5 min-[580px]:p-2">${
-											product.sellTotal == product.factoryTotal
-												? "ویژه رستوران"
-												: product.sellTotal.toLocaleString("fa-IR")
-										}</td>
 									</tr>
 								`
 								)
@@ -584,7 +619,7 @@ resultContainer?.addEventListener("click", (e) => {
 
 	// Function to print the invoice
 	function printInvoice(invoice) {
-		let printSection = document.createElement("div");
+		const printSection = document.createElement("div");
 		printSection.id = "printSection";
 		printSection.innerHTML = generateInvoiceHTML(invoice);
 		document.body.appendChild(printSection);
@@ -592,7 +627,7 @@ resultContainer?.addEventListener("click", (e) => {
 		printJS({
 			printable: "printSection",
 			type: "html",
-			css: "/assets/main-Qu4RgN68.css",
+			css: "/src/css/style.css",
 			scanStyles: false,
 			style: `
 					body{

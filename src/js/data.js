@@ -149,8 +149,8 @@ export const products = [
 	{
 		category: "cheese",
 		name: "پنیر خامه ای 100 گرمی",
-		factory_price: 175000,
-		sell_price: 200000,
+		factory_price: 200000,
+		sell_price: 250000,
 		img: "https://image.torob.com/base/images/Ao/dP/AodPpTHQkKi9aYs8.jpg_/560x560.webp",
 	},
 	{

@@ -1,10 +1,12 @@
-export const openNav = document.querySelector("#openNav");
-export const closeNav = document.querySelector("#closeNav");
-export const navigation = document.querySelector("#navigation");
+import { productCategories } from "./main";
 
-export const createInvoiceBtn = document.querySelector("#create-invoice");
-export const closeProductListBtn = document.querySelector("#close-product-list");
-export const closeInvoiceDetailBtn = document.querySelector("#close-invoice-detail");
+export const openNav = document.getElementById("openNav");
+export const closeNav = document.getElementById("closeNav");
+export const navigation = document.getElementById("navigation");
+
+export const createInvoiceBtn = document.getElementById("create-invoice");
+export const closeProductListBtn = document.getElementById("close-product-list");
+export const closeInvoiceDetailBtn = document.getElementById("close-invoice-detail");
 export const invoiceDetail = document.querySelector(".invoice-detail");
 export const addProductModal = document.querySelector(".add-product");
 
@@ -24,16 +26,25 @@ createInvoiceBtn?.addEventListener("click", () => {
 });
 
 closeInvoiceDetailBtn?.addEventListener("click", () => {
-	// reset invoice details values after clicking close invoice detail modal
-	document.querySelectorAll("[data-req]").forEach((item) => {
-		item.value = "";
-	});
+	dataCleaner();
 	invoiceDetail.classList.add("hidden");
 	document.body.classList.remove("overflow-hidden");
 });
 
 closeProductListBtn?.addEventListener("click", () => {
+	dataCleaner();
 	addProductModal.classList.add("hidden");
 	invoiceDetail.classList.add("hidden");
 	document.body.classList.remove("overflow-hidden");
 });
+
+// createInvoiceBtn?.addEventListener("click", () => {
+// 	invoicePreview.classList.remove("hidden");
+// });
+
+export function dataCleaner() {
+	document.querySelectorAll("[data-req]").forEach((input) => (input.value = null));
+	document.querySelectorAll(".count-action input").forEach((input) => (input.value = null));
+	document.querySelectorAll(".product-info").forEach((div) => div.classList.replace("flex", "hidden"));
+	productCategories[0] ? productCategories[0].click() : null;
+}

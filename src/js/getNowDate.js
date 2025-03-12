@@ -8,4 +8,4 @@ export const getNowDate = () => {
 	});
 };
 
-export const dateElement = document.querySelector("#date");
+export const dateElement = document.getElementById("date");

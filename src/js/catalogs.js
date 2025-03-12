@@ -2,7 +2,7 @@ import { products } from "./data";
 export const catBoxsContainer = document.querySelector(".cat-box-container");
 export const catBoxs = document.querySelectorAll(".cat-box");
 export const catalogTableCr = document.querySelector(".catalog-table-cr");
-export const closeCatalog = document.querySelector("#closeCatalog");
+export const closeCatalog = document.getElementById("closeCatalog");
 export const catalogList = document.querySelector(".catalog-lists");
 
 export let dataCatalog = "";
