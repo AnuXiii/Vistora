@@ -295,8 +295,8 @@ function createInvoiceCard() {
 		const tr = document.createElement("tr");
 		tr.className = "product-preview";
 		tr.innerHTML = /*html*/ `
-			<td class="border border-solid border-white text-center p-4">${item.name}</td>
-			<td class="border border-solid border-white text-center p-4">${item.count}</td>
+			<td class="border border-solid border-white text-center p-4 bg-[#303030]">${item.name}</td>
+			<td class="border border-solid border-white text-center p-4 bg-[#303030]">${item.count}</td>
 		`;
 		invoicePreview.querySelector("table").appendChild(tr);
 	});
@@ -309,7 +309,7 @@ document.querySelector(".unsave")?.addEventListener("click", handleUnsaveInvoice
 
 function handleSaveInvoice() {
 	if (!currentInvoiceId || selectedProducts.length === 0) {
-		showAlert("خطا در ذخیره‌سازی فاکتور!", colors.error);
+		showAlert("خطا در ذخیره‌سازی فاکتور", colors.error);
 		return;
 	}
 
@@ -541,12 +541,12 @@ resultContainer?.addEventListener("click", (e) => {
 						<table class="table w-full border-collapse text-center text-[0.6rem] min-[580px]:text-sm text-xs">
 							<tbody style="page-break-before: auto; page-break-after: auto;">
 							<tr class="break-inside-avoid table-row">
-									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">ردیف</th>
-									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">نام محصول</th>
-									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">تعداد</th>
-									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">قیمت خرید</th>
-									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">قیمت فروش</th>
-									<th class="table-cell border border-solid border-black text-center p-1 min-[580px]:p-2">جمع کل خرید</th>
+									<th class="table-cell bg-gray-100 border border-solid border-black text-center p-1 min-[580px]:p-2">ردیف</th>
+									<th class="table-cell bg-gray-100 border border-solid border-black text-center p-1 min-[580px]:p-2">نام محصول</th>
+									<th class="table-cell bg-gray-100 border border-solid border-black text-center p-1 min-[580px]:p-2">تعداد</th>
+									<th class="table-cell bg-gray-100 border border-solid border-black text-center p-1 min-[580px]:p-2">قیمت خرید</th>
+									<th class="table-cell bg-gray-100 border border-solid border-black text-center p-1 min-[580px]:p-2">قیمت فروش</th>
+									<th class="table-cell bg-gray-100 border border-solid border-black text-center p-1 min-[580px]:p-2">جمع کل خرید</th>
 							</tr>
 							${invoice.products
 								.map(
@@ -627,7 +627,7 @@ resultContainer?.addEventListener("click", (e) => {
 		printJS({
 			printable: "printSection",
 			type: "html",
-			css: "/assets/main-Bjqm9QEU.css",
+			css: "/src/css/style.css",
 			scanStyles: false,
 			style: `
 					body{
