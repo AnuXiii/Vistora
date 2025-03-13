@@ -630,7 +630,7 @@ resultContainer?.addEventListener("click", (e) => {
 		printJS({
 			printable: "printSection",
 			type: "html",
-			css: "/src/css/style.css",
+			css: "https://vistora-one.vercel.app/assets/main-CCQHJ0eG.css",
 			scanStyles: false,
 			style: `
 					body{
