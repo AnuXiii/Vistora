@@ -38,10 +38,6 @@ closeProductListBtn?.addEventListener("click", () => {
 	document.body.classList.remove("overflow-hidden");
 });
 
-// createInvoiceBtn?.addEventListener("click", () => {
-// 	invoicePreview.classList.remove("hidden");
-// });
-
 export function dataCleaner() {
 	document.querySelectorAll("[data-req]").forEach((input) => (input.value = null));
 	document.querySelectorAll(".count-action input").forEach((input) => (input.value = null));

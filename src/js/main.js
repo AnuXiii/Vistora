@@ -3,7 +3,8 @@ import domtoimage from "dom-to-image"; // Library to convert DOM elements to ima
 import printJS from "print-js"; // Library to handle printing functionality
 import { products } from "./data"; // Import product data from a local file
 import { showAlert, colors } from "./showAlert"; // Import alert utility functions
-import * as component from "./components";
+import { Vheader } from "./components/header";
+import { Vfooter } from "./components/footer";
 import * as modalsController from "./modalsController"; // Import modal control functions
 import { imgStatusChecker, linkStatusChecker } from "./loadCheckers"; // Import functions to check image and link statuses
 import * as installModal from "./installModal"; // Import installation modal functions
@@ -24,7 +25,9 @@ let productListData = ""; // Stores the currently selected product category
 let invoiceData = {}; // Stores invoice details
 
 // Update the date element in the invoice detail page if it exists
-dateElement ? (dateElement.textContent = getNowDate()) : "";
+if (dateElement) {
+	dateElement.textContent = getNowDate();
+}
 
 // Run link status checker to ensure all resources are loaded correctly
 document.addEventListener("DOMContentLoaded", () => {
@@ -627,7 +630,7 @@ resultContainer?.addEventListener("click", (e) => {
 		printJS({
 			printable: "printSection",
 			type: "html",
-			css: "https://vistora-one.vercel.app/assets/main-mk_Fdbv2.css",
+			css: "/src/css/style.css",
 			scanStyles: false,
 			style: `
 					body{

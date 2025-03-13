@@ -1,3 +1,4 @@
+// product img load checker
 export function imgStatusChecker() {
 	document.querySelectorAll(".product-img img").forEach((img) => {
 		img.onload = function () {
@@ -10,6 +11,7 @@ export function imgStatusChecker() {
 	});
 }
 
+// active link if user on current URL
 export function linkStatusChecker() {
 	document.querySelectorAll(".link").forEach((link) => {
 		let linkPath = link.pathname;
