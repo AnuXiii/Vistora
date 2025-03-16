@@ -1,20 +1,13 @@
 <!doctype html>
 <html
 	lang="fa"
-	dir="rtl"
-	class="">
+	dir="rtl">
 	<head>
+		<!-- Meta Tags -->
 		<meta charset="UTF-8" />
-		<link
-			rel="icon"
-			type="image/svg+xml"
-			href="/images/logo.png" />
 		<meta
 			name="viewport"
-			content="width=device-width, initial-scale=1.0 user-scalable=no" />
-		<meta
-			name="title"
-			content="vistora" />
+			content="width=device-width, initial-scale=1.0" />
 		<meta
 			name="description"
 			content="فاکتور ساز آنلاین محصولات طراوت به آسانی فاکتور های خود را ثبت و بلافاصله چاپ نمایید" />
@@ -22,20 +15,42 @@
 			name="keywords"
 			content="فاکتور،طراوت،فاکتور ساز،فاکتور ساز آنلاین،لبنیات" />
 		<meta
-			name="robots"
-			content="index, follow" />
-		<meta
-			http-equiv="Content-Type"
-			content="text/html; charset=utf-8" />
-		<meta
 			name="author"
 			content="Mahdi rostami" />
+		<meta
+			name="robots"
+			content="index, follow" />
+
+		<!-- Open Graph / Social Media Meta Tags -->
+		<meta
+			property="og:title"
+			content="Vistora - کاتالوگ" />
+		<meta
+			property="og:description"
+			content="فاکتور ساز آنلاین محصولات طراوت به آسانی فاکتور های خود را ثبت و بلافاصله چاپ نمایید" />
+		<meta
+			property="og:type"
+			content="website" />
+		<meta
+			property="og:image"
+			content="/images/logo.png" />
+
+		<!-- Title and Favicon -->
 		<title>Vistora - کاتالوگ</title>
-		<!--  -->
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/images/logo.png" />
+		<link
+			rel="manifest"
+			href="/manifest.json" />
+
+		<!-- External Resources -->
 		<script
-			module
+			type="module"
 			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-		<!--  -->
+
+		<!-- Internal Styles -->
 		<link
 			rel="stylesheet"
 			href="/src/css/style.css" />
@@ -46,135 +61,242 @@
 			role="application"
 			class="print:hidden">
 			<v-header></v-header>
-			<!--  -->
+
 			<main class="cr">
-				<div
-					class="cat-box-container grid grid-cols-5 justify-between text-center items-center w-full mx-auto max-[991px]:grid-cols-3 max-[480px]:grid-cols-2">
-					<div
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group"
+				<!-- Catalog Grid -->
+				<section
+					class="cat-box-container grid grid-cols-5 gap-4 justify-between text-center items-center w-full mx-auto max-[991px]:grid-cols-3 max-[480px]:grid-cols-2"
+					aria-label="دسته‌بندی محصولات">
+					<!-- Catalog Items -->
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="yogurt">
-						<button class="flex flex-col gap-3 justify-center items-center w-full">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات ماست">
 							<img
 								src="/images/icons/yogurt.svg"
 								alt="ماست"
+								width="80"
+								height="80"
 								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20]" />
-							<span>ماست</span>
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">ماست</span>
 						</button>
-					</div>
-					<div
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group"
+					</article>
+
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="milk">
-						<button class="flex flex-col gap-3 justify-center items-center w-full">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات شیر">
 							<img
 								src="/images/icons/milk.svg"
 								alt="شیر"
+								width="80"
+								height="80"
 								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20]" />
-							<span>شیر</span>
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">شیر</span>
 						</button>
-					</div>
-					<div
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group"
+					</article>
+
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="buttermilk">
-						<button class="flex flex-col gap-3 justify-center items-center w-full">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات دوغ">
 							<img
 								src="/images/icons/buttermilk.svg"
 								alt="دوغ"
+								width="80"
+								height="80"
 								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20]" />
-							<span>دوغ</span>
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">دوغ</span>
 						</button>
-					</div>
-					<div
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group"
+					</article>
+
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="cream">
-						<button class="flex flex-col gap-3 justify-center items-center w-full">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات خامه">
 							<img
 								src="/images/icons/cream.svg"
 								alt="خامه"
+								width="80"
+								height="80"
 								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20]" />
-							<span>خامه</span>
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">خامه</span>
 						</button>
-					</div>
-					<div
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group"
+					</article>
+
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="f-yogurt">
-						<button class="flex flex-col gap-3 justify-center items-center w-full">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات ماست طعم دار">
 							<img
 								src="/images/icons/yogurt.svg"
 								alt="ماست طعم دار"
+								width="80"
+								height="80"
 								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20]" />
-							<span>ماست طعم دار</span>
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">ماست طعم دار</span>
 						</button>
-					</div>
-					<div
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group"
+					</article>
+
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="cheese">
-						<button class="flex flex-col gap-3 justify-center items-center w-full">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات پنیر">
 							<img
 								src="/images/icons/cheese.svg"
 								alt="پنیر"
+								width="80"
+								height="80"
 								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20]" />
-							<span>پنیر</span>
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">پنیر</span>
 						</button>
-					</div>
-					<div
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group"
+					</article>
+
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="b-yogurt">
-						<button class="flex flex-col gap-3 justify-center items-center w-full">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات ماست بزرگ">
 							<img
 								src="/images/icons/bucket.svg"
 								alt="ماست بزرگ"
+								width="80"
+								height="80"
 								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20]" />
-							<span>ماست بزرگ</span>
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">ماست بزرگ</span>
 						</button>
-					</div>
-				</div>
-				<div class="catalog-table-cr hidden">
+					</article>
+				</section>
+
+				<!-- Catalog Table -->
+				<section
+					class="catalog-table-cr hidden"
+					aria-label="جدول محصولات">
 					<button
 						id="closeCatalog"
-						class="text-3xl flex justify-center items-center gap-3 cursor-pointer">
+						class="text-3xl flex justify-center items-center gap-3 cursor-pointer mb-3 hover:text-primary transition-colors duration-200"
+						aria-label="بستن جدول محصولات">
 						<ion-icon
 							name="close-outline"
-							class="p-4 bg-primary text-white"></ion-icon>
+							class="p-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
+							aria-hidden="true"></ion-icon>
 						<span class="text-sm">بستن</span>
 					</button>
-					<div class="overflow-x-auto">
-						<table class="catalog-lists w-full border-collapse text-center">
-							<tr class="text-nowrap">
-								<th class="bg-gray-100 border border-solid border-black/10 py-4 px-2 text-nowrap">نام محصول</th>
-								<th class="bg-gray-100 border border-solid border-black/10 py-4 px-2 text-nowrap">قیمت خرید</th>
-								<th class="bg-gray-100 border border-solid border-black/10 py-4 px-2 text-nowrap">قیمت فروش</th>
-								<th class="bg-gray-100 border border-solid border-black/10 py-4 px-2 text-nowrap">دسته بندی</th>
-							</tr>
+					<div class="overflow-x-auto rounded-lg shadow-lg">
+						<table
+							class="catalog-lists w-full border-collapse text-center"
+							role="grid">
+							<thead>
+								<tr>
+									<th
+										scope="col"
+										class="bg-gray-100 border border-solid border-black/10 py-4 px-2 text-nowrap font-medium">
+										نام محصول
+									</th>
+									<th
+										scope="col"
+										class="bg-gray-100 border border-solid border-black/10 py-4 px-2 text-nowrap font-medium">
+										قیمت خرید
+									</th>
+									<th
+										scope="col"
+										class="bg-gray-100 border border-solid border-black/10 py-4 px-2 text-nowrap font-medium">
+										قیمت فروش
+									</th>
+									<th
+										scope="col"
+										class="bg-gray-100 border border-solid border-black/10 py-4 px-2 text-nowrap font-medium">
+										دسته بندی
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically populated -->
+							</tbody>
 						</table>
 					</div>
-				</div>
+				</section>
 			</main>
-			<div class="cr">
-				<h1 class="font-dana-bold font-bold text-3xl mb-8">بیانیه ماموریت:</h1>
-				<p class="leading-8 text-justify">
-					ماموریت: تامین سلامت غذایی جامعه و ارتقای سطح توقع شهروندان ایرانی از محصوت لبنی طراوت برآن است تا در مسیر پیش
-					رو سلامت غذایی جامعه را با روشهای زیر تامین نماید: الف – تولید محصوت لبنی سالم با بهره گیری از مواد اولیه سالم
-					و طبیعی و بکارگیری تجهیزات روز دنیا برای کسب حداکثر کیفیت ب – افزایش مصرف سرانه لبنیات در بین شهروندان ایرانی
-					از طریق اطلاع رسانی درست، علمی و همه جانبه و همچنین تنوع بخشی به محصولات، مبتنی بر سلایق مصرف کنندگان. بدیهی
-					است پس از انجام ماموریت فوق و ارائه اطلاعات لازم در رابطه با شناخت محصولات لبنی با کیفیت، سطح توقع شهروندان از
-					محصولات لبنی ارتقا خواهد یافت. چشم انداز: قرار گرفتن در بین تولید کنندگان برتر داخلی و حضور در بازارهای منطقه
-					ارزشها: ارتقای سطح سلامت جامعه و رعایت موازین احترام متقابل در برقراری رابطه با مصرف کنندگان در ردیف مهمترین
-					دغدغه های طراوت قرار دارد.
-				</p>
-			</div>
+
+			<!-- Mission Statement -->
+			<section
+				class="cr my-8 bg-gray-50"
+				aria-label="بیانیه ماموریت">
+				<h1 class="font-dana-bold font-bold text-3xl mb-8 text-gray-900">بیانیه ماموریت</h1>
+
+				<div class="space-y-8">
+					<!-- Mission -->
+					<div class="bg-white p-6">
+						<h2 class="font-dana-bold text-xl mb-4 text-primary">ماموریت</h2>
+						<p class="leading-8 text-justify text-gray-700">
+							تامین سلامت غذایی جامعه و ارتقای سطح توقع شهروندان ایرانی از محصولات لبنی طراوت برآن است تا در مسیر پیش رو
+							سلامت غذایی جامعه را با روش‌های زیر تامین نماید:
+						</p>
+						<ul class="list-disc list-inside mt-4 space-y-3 text-gray-700">
+							<li>
+								تولید محصولات لبنی سالم با بهره‌گیری از مواد اولیه سالم و طبیعی و بکارگیری تجهیزات روز دنیا برای کسب
+								حداکثر کیفیت
+							</li>
+							<li>
+								افزایش مصرف سرانه لبنیات در بین شهروندان ایرانی از طریق اطلاع‌رسانی درست، علمی و همه‌جانبه و همچنین
+								تنوع‌بخشی به محصولات، مبتنی بر سلایق مصرف‌کنندگان
+							</li>
+						</ul>
+						<p class="leading-8 text-justify mt-4 text-gray-700">
+							بدیهی است پس از انجام ماموریت فوق و ارائه اطلاعات لازم در رابطه با شناخت محصولات لبنی با کیفیت، سطح توقع
+							شهروندان از محصولات لبنی ارتقا خواهد یافت.
+						</p>
+					</div>
+
+					<!-- Vision -->
+					<div class="bg-white p-6">
+						<h2 class="font-dana-bold text-xl mb-4 text-primary">چشم‌انداز</h2>
+						<p class="leading-8 text-justify text-gray-700">
+							قرار گرفتن در بین تولیدکنندگان برتر داخلی و حضور در بازارهای منطقه
+						</p>
+					</div>
+
+					<!-- Values -->
+					<div class="bg-white p-6">
+						<h2 class="font-dana-bold text-xl mb-4 text-primary">ارزش‌ها</h2>
+						<p class="leading-8 text-justify text-gray-700">
+							ارتقای سطح سلامت جامعه و رعایت موازین احترام متقابل در برقراری رابطه با مصرف‌کنندگان در ردیف مهمترین
+							دغدغه‌های طراوت قرار دارد.
+						</p>
+					</div>
+				</div>
+			</section>
 		</div>
-		<!--  -->
+
 		<v-footer></v-footer>
-		<!--  -->
-		<script
-			type="module"
-			src="/src/js/main.js"></script>
+
+		<!-- Scripts -->
+		<script type="module">
+			import { initCatalog } from "/src/js/catalogs.js";
+			import "/src/js/main.js";
+
+			// Initialize catalog when DOM is loaded
+			document.addEventListener("DOMContentLoaded", initCatalog);
+		</script>
 	</body>
 </html>

@@ -1,7 +1,7 @@
 export class Vheader extends HTMLElement {
 	connectedCallback() {
 		this.innerHTML = /*html*/ `
-            <header class="cr max-[480px]:mb-8">
+            <header id="header" class="cr max-[480px]:mb-8">
                 <div class="flex justify-between items-center">
                     <div class="flex justify-center items-center">
                         <a

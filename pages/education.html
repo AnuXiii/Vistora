@@ -52,18 +52,22 @@
 				<h1 class="text-center text-3xl font-dana-bold font-bold mb-10 max-[991px]:text-2xl">
 					پیش نیاز های استفاده از برنامه ویزتورا
 				</h1>
-				<div class="grid grid-cols-2 gap-3 items-start max-[991px]:grid-cols-1 max-[991px]:gap-3">
+				<div class="grid grid-cols-2 gap-3 items-start max-[1024px]:grid-cols-1 max-[991px]:gap-3">
 					<div class="flex flex-col gap-4">
 						<ul class="grid grid-cols-12 gap-3">
 							<li
 								class="text-2xl flex justify-center gap-3 items-center col-span-6 max-[480px]:col-span-12 max-[480px]:aspect-auto p-4 border border-solid border-black/10 text-center bg-gray-100 rounded-lg aspect-video">
+								<ion-icon
+									name="wifi-outline"
+									class="text-blue-500"></ion-icon>
 								<span>اینترنت پر سرعت</span>
-								<ion-icon name="wifi-outline"></ion-icon>
 							</li>
 							<li
 								class="text-2xl flex justify-center gap-3 items-center col-span-6 max-[480px]:col-span-12 max-[480px]:aspect-auto p-4 border border-solid border-black/10 text-center bg-gray-100 rounded-lg aspect-video">
+								<ion-icon
+									name="logo-chrome"
+									class="text-blue-500"></ion-icon>
 								<span>داشتن مرورگر</span>
-								<ion-icon name="logo-chrome"></ion-icon>
 							</li>
 							<li
 								class="text-2xl flex justify-center gap-3 items-center col-span-12 max-[480px]:h-auto p-4 border border-solid border-black/10 text-center bg-gray-100 rounded-lg h-30">
@@ -73,7 +77,7 @@
 										href="https://biaupload.com/do.php?filename=org-94b09f0253e61.apk"
 										title="download mprint"
 										target="_blank"
-										class="text-blue-500 font-bold"
+										class="text-blue-500 font-bold relative hover:text-blue-600 transition-colors duration-200 hover:after:w-full hover:after:opacity-100 after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-0 after:h-0.5 after:bg-blue-500 after:transition-all after:duration-200 after:opacity-0"
 										>mPrint</a
 									>
 								</span>
@@ -103,20 +107,20 @@
 						</ul>
 					</div>
 					<div
-						class="flex justify-center bg-gray-100 rounded-md relative pb-8 border border-solid border-black/10 h-fit aspect-square">
+						class="flex justify-center bg-gray-100 rounded-md relative pb-8 border border-solid border-black/10 h-full aspect-auto">
 						<img
 							src="/videos/vistora-printing-video.gif"
 							alt="how to print a invoice"
 							loading="lazy"
 							id="edu-gif"
-							class="h-full w-full object-contain select-none rounded-lg" />
+							class="h-[500px] w-full object-contain select-none rounded-lg drop-shadow-lg" />
 						<small class="absolute bottom-4 left-4 text-black/60">نمونه پرینت با برنامه ویزتورا</small>
 					</div>
 				</div>
 				<button class="mt-10 w-full">
 					<a
 						href="/"
-						class="w-46 max-[580px]:w-full mx-auto block text-center rounded-lg bg-primary py-3 px-3 text-2xl text-white font-dana-bold font-bold border-2 border-solid border-white outline-2 outline-solid outline-primary"
+						class="duration-200 w-46 max-[580px]:w-full mx-auto block text-center rounded-lg bg-primary py-3 px-3 text-2xl text-white font-dana-bold font-bold border-2 border-solid border-white outline-2 outline-solid outline-primary hover:bg-transparent hover:text-primary"
 						>شروع کنید</a
 					>
 				</button>

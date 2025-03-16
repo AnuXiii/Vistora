@@ -1,14 +1,10 @@
 <!doctype html>
 <html
 	lang="fa"
-	dir="rtl"
-	class="">
+	dir="rtl">
 	<head>
+		<!-- Meta Tags -->
 		<meta charset="UTF-8" />
-		<link
-			rel="icon"
-			type="image/svg+xml"
-			href="/images/logo.png" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0 user-scalable=no" />
@@ -30,16 +26,34 @@
 		<meta
 			name="author"
 			content="Mahdi rostami" />
+
+		<!-- Open Graph / Social Media Meta Tags -->
+		<meta
+			property="og:title"
+			content="Vistora - درباره ما" />
+		<meta
+			property="og:description"
+			content="فاکتور ساز آنلاین محصولات طراوت به آسانی فاکتور های خود را ثبت و بلافاصله چاپ نمایید" />
+		<meta
+			property="og:type"
+			content="website" />
+
+		<!-- Title and Favicon -->
 		<title>Vistora - درباره ما</title>
-		<!--  -->
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/images/logo.png" />
+
+		<!-- External Resources -->
 		<script
 			module
 			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-		<!--  -->
+
+		<!-- Internal Styles -->
 		<link
 			rel="stylesheet"
 			href="/src/css/style.css" />
-		<!--  -->
 	</head>
 	<body>
 		<div
@@ -47,7 +61,7 @@
 			role="application"
 			class="print:hidden">
 			<v-header></v-header>
-			<!--  -->
+
 			<main class="cr">
 				<div class="grid grid-cols-2 gap-4 max-[991px]:grid-cols-1 items-start max-[991px]:gap-10">
 					<div class="flex flex-col gap-4">
@@ -147,32 +161,15 @@
 				</div>
 			</main>
 		</div>
-		<!--  -->
-		<v-footer></v-footer>
-		<!--  -->
-		<script>
-			const accBtn = document.querySelectorAll(".acc-button ");
-			accBtn.forEach((btn) => {
-				btn.addEventListener("click", () => {
-					accBtn.forEach((otherBtn) => {
-						if (otherBtn !== btn) {
-							otherBtn.parentNode.classList.remove("bg-gray-100");
-							otherBtn.classList.remove("ac-active");
-							otherBtn.lastElementChild.classList.remove("rotate-180");
-							otherBtn.nextElementSibling.classList.add("hidden");
-						}
-					});
 
-					btn.parentNode.classList.toggle("bg-gray-100");
-					btn.classList.toggle("ac-active");
-					btn.lastElementChild.classList.toggle("rotate-180");
-					btn.nextElementSibling.classList.toggle("hidden");
-				});
-			});
+		<v-footer></v-footer>
+
+		<script type="module">
+			import { initAccordion } from "/src/js/accordion.js";
+			import "/src/js/main.js";
+
+			// Initialize accordion when DOM is loaded
+			document.addEventListener("DOMContentLoaded", initAccordion);
 		</script>
-		<!--  -->
-		<script
-			type="module"
-			src="/src/js/main.js"></script>
 	</body>
 </html>

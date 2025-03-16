@@ -1,17 +1,24 @@
+/* Tailwind CSS Import */
 @import "tailwindcss";
 
+/* Font Definitions */
 @font-face {
 	font-family: "dana-regular";
 	src: url(/fonts/dana/dana-fanum-regular.woff2) format("woff2");
 	font-display: swap;
+	font-weight: normal;
 }
+
 @font-face {
 	font-family: "dana-bold";
 	src: url(/fonts/dana/dana-fanum-bold.woff2) format("woff2");
 	font-display: swap;
+	font-weight: bold;
 }
 
+/* Theme Variables */
 @theme {
+	/* Colors */
 	--color-primary: #e11d48;
 	--color-blue-500: #2b7fff;
 	--color-blue-600: #155dfc;
@@ -22,19 +29,47 @@
 	--color-gray-100: #eee;
 	--color-gray-200: #e2e2e2;
 	--color-gray-300: #d1d5dc;
-	--font-dana: "dana-regular";
-	--font-dana-bold: "dana-bold";
+	--color-gray-500: #6b7280;
+	--color-gray-700: #374151;
+	--color-gray-900: #111827;
+
+	/* Typography */
+	--font-dana: "dana-regular", system-ui, -apple-system, sans-serif;
+	--font-dana-bold: "dana-bold", system-ui, -apple-system, sans-serif;
+
+	/* Transitions */
+	--transition-base: 200ms ease-in-out;
+	--transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+	/* Shadows */
+	--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+	--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+	/* Animations */
 	--animate-top-in: bounce 0.5s 3s ease-in-out forwards;
-	@keyframes bounce {
-		to {
-			opacity: 1;
-			top: 0;
-		}
+}
+
+/* Animations */
+@keyframes bounce {
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Base Styles */
 @layer base {
-	/* hide input number in firefox & chrome browsers */
+	/* Reset Input Styles */
 	input[type="number"]::-webkit-outer-spin-button,
 	input[type="number"]::-webkit-inner-spin-button,
 	input[type="search"]::-webkit-search-cancel-button {
@@ -47,6 +82,7 @@
 		-moz-appearance: textfield;
 	}
 
+	/* HTML and Body Styles */
 	html {
 		@apply scroll-smooth;
 	}
@@ -55,8 +91,10 @@
 		@apply font-dana text-base bg-white text-black transition-colors duration-200;
 	}
 
+	/* Logo Styles */
 	.logo {
-		@apply relative font-extralight duration-200 bg-primary bg-gradient-to-tr from-primary to-black w-24 h-12 after:content-['Vistora'] after:text-white after:z-10 after:text-center after:w-full after:absolute after:bottom-2 -mr-4;
+		@apply relative font-extralight duration-200 bg-primary bg-gradient-to-tr from-primary to-black w-24 h-12;
+		@apply after:content-['Vistora'] after:text-white after:z-10 after:text-center after:w-full after:absolute after:bottom-2 -mr-4;
 		mask-image: url(/images/logo.png);
 		mask-size: contain;
 		mask-position: center;
@@ -64,13 +102,17 @@
 	}
 }
 
+/* Component Styles */
 @layer components {
+	/* Container */
 	.cr {
 		@apply max-w-7xl p-4 mx-auto mb-24 max-[480px]:p-2;
 	}
 
+	/* Link Styles */
 	.link {
-		@apply relative block duration-200 w-fit p-2 text-lg hover:text-primary hover:after:w-full hover:after:right-0;
+		@apply relative block duration-200 w-fit p-2 text-lg hover:text-primary;
+		@apply hover:after:w-full hover:after:right-0;
 
 		&::after {
 			content: "";
@@ -78,22 +120,33 @@
 		}
 	}
 
+	/* Card Styles */
+	.card {
+		@apply bg-white rounded-lg shadow-sm border border-gray-200;
+		@apply transition-all duration-300 hover:shadow-md;
+	}
+
+	/* Button Styles */
+	.btn {
+		@apply inline-flex items-center justify-center px-4 py-2 rounded-lg;
+		@apply font-dana-bold font-bold transition-all duration-300;
+		@apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+	}
+
+	.btn-primary {
+		@apply bg-primary text-white  hover:shadow-lg;
+		@apply focus:ring-primary;
+	}
+
+	/* Fade In Animation */
 	.fade-in {
 		animation: fade-in 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 	}
-
-	@keyframes fade-in {
-		from {
-			opacity: 0;
-		}
-
-		to {
-			opacity: 1;
-		}
-	}
 }
 
+/* Utility Styles */
 @layer utilities {
+	/* Active State */
 	.active {
 		@apply bg-primary text-white;
 
@@ -105,11 +158,20 @@
 			@apply brightness-[20];
 		}
 	}
+
+	/* Print Styles */
+	@media print {
+		.print\:hidden {
+			display: none !important;
+		}
+	}
 }
 
+/* Responsive Styles */
 @media (max-width: 580px) {
 	#navigation {
-		@apply fixed right-0 top-0 p-4 flex-col justify-start items-start backdrop-blur-xs bg-black/90 text-white w-full h-full z-50 hidden;
+		@apply fixed right-0 top-0 p-4 flex-col justify-start items-start;
+		@apply backdrop-blur-xs bg-black/90 text-white w-full h-full z-50 hidden;
 
 		li,
 		button {
@@ -122,7 +184,7 @@
 	}
 }
 
-/* invoice content for download invoice as image */
+/* Invoice Specific Styles */
 #invoice-content {
 	width: 720px;
 	aspect-ratio: 1 / 1;
@@ -134,8 +196,6 @@
 	display: block;
 	visibility: visible;
 	position: absolute;
-	top: 0;
-	left: 0;
 	inset: 0;
 	width: 100vw;
 	z-index: 101;
@@ -147,10 +207,12 @@
 	clip-path: inset(6% 0 6% 0);
 }
 
+/* Accordion Styles */
 .acc-button.ac-active {
 	@apply border-black/10;
 }
 
+/* Toast Styles */
 .toastify {
 	@apply max-w-[90%] text-center;
 }

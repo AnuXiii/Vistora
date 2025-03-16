@@ -3,6 +3,7 @@
 	lang="fa"
 	dir="rtl">
 	<head>
+		<!-- Meta Tags -->
 		<meta charset="UTF-8" />
 		<link
 			rel="icon"
@@ -32,22 +33,40 @@
 		<meta
 			name="author"
 			content="Mahdi rostami" />
+
+		<!-- Open Graph / Social Media Meta Tags -->
+		<meta
+			property="og:title"
+			content="Vistora - فاکتور ساز آنلاین" />
+		<meta
+			property="og:description"
+			content="فاکتور ساز آنلاین محصولات طراوت به آسانی فاکتور های خود را ثبت و بلافاصله چاپ نمایید" />
+		<meta
+			property="og:type"
+			content="website" />
+		<meta
+			property="og:image"
+			content="/images/logo.png" />
+
+		<!-- Title and Favicon -->
 		<title>Vistora - فاکتور ساز آنلاین</title>
-		<!--  -->
+
+		<!-- External Resources -->
 		<script
 			module
 			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-		<!--  -->
 		<link
 			rel="stylesheet"
 			type="text/css"
 			href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
-		<!--  -->
+
+		<!-- Internal Styles -->
 		<link
 			rel="stylesheet"
 			href="/src/css/style.css" />
 	</head>
 	<body>
+		<!-- Main Application Container -->
 		<div
 			id="app"
 			role="application"
@@ -57,173 +76,249 @@
 			<main
 				role="main"
 				class="cr mb-12 max-h-screen">
-				<div class="relative flex items-center w-full mb-16">
+				<!-- Search Section -->
+				<section
+					class="relative flex items-center w-full mb-16"
+					aria-label="جستجو">
+					<label
+						for="search"
+						class="sr-only"
+						>جستجو بر اساس نام</label
+					>
 					<input
 						type="search"
 						name="search"
 						id="search"
 						placeholder="جستجو بر اساس نام"
-						class="border-2 border-solid border-black/10 rounded-md w-full p-4 pl-10 appearance-none outline-none shadow-lg shadow-black/5 focus:border-primary placeholder:opacity-100" />
+						class="border-2 border-solid border-black/10 rounded-md w-full p-4 pl-10 appearance-none outline-none shadow-lg shadow-black/5 focus:border-primary placeholder:opacity-100 transition-colors duration-200"
+						aria-label="جستجو بر اساس نام" />
 					<ion-icon
 						name="search-outline"
-						class="absolute left-3 text-2xl"></ion-icon>
-				</div>
+						class="absolute left-3 text-2xl"
+						aria-hidden="true"></ion-icon>
+				</section>
 				<!--  -->
-				<div
-					class="empty-section flex flex-col justify-center items-center gap-8 p-8 max-[480px]:p-4 rounded-md border-[4px] border-dashed border-black/20">
+				<section
+					class="empty-section flex flex-col justify-center items-center gap-8 p-8 max-[480px]:p-4 rounded-md border-[4px] border-dashed border-black/20"
+					aria-label="حالت خالی">
 					<img
 						src="/images/empty.webp"
-						alt="empty"
-						class="w-56 drop-shadow-2xl" />
-				</div>
+						alt="حالت خالی"
+						class="w-56 drop-shadow-2xl"
+						loading="lazy" />
+				</section>
 				<!--  -->
-				<div
-					class="result-container grid grid-cols-2 gap-8 justify-center items-center max-[991px]:grid-cols-1 pb-30"></div>
+				<section
+					class="result-container grid grid-cols-2 gap-8 justify-center items-center max-[991px]:grid-cols-1 pb-30"
+					aria-label="نتایج جستجو"></section>
 				<!--  -->
 			</main>
-			<div class="fixed bottom-0 right-0 w-full">
+			<footer class="fixed bottom-0 right-0 w-full">
 				<div class="flex justify-center items-center w-full">
 					<button
 						id="create-invoice"
-						class="w-full flex justify-center items-center gap-2 text-2xl cursor-pointer bg-primary text-white py-4"
+						class="w-full flex justify-center items-center gap-2 text-2xl cursor-pointer bg-primary text-white py-4 hover:bg-primary/90 transition-colors duration-200"
 						title="ایجاد فاکتور"
-						tabindex="1">
+						aria-label="ایجاد فاکتور جدید">
 						<span>ایجاد فاکتور</span>
 					</button>
 				</div>
-			</div>
+			</footer>
 		</div>
 		<!--  -->
-		<div class="invoice-detail p-2 py-0 inset-0 min-h-screen fixed overflow-auto bg-white hidden print:hidden">
+		<div
+			class="invoice-detail p-2 py-0 inset-0 min-h-screen fixed overflow-auto bg-white hidden print:hidden"
+			role="dialog"
+			aria-labelledby="invoice-detail-title"
+			aria-modal="true">
 			<header class="flex justify-between items-center mb-8">
 				<div class="flex -mx-2">
 					<button
 						title="بستن"
 						id="close-invoice-detail"
-						class="bg-primary flex justify-center items-center text-white text-2xl p-4">
-						<ion-icon name="close-outline"></ion-icon>
+						class="bg-primary flex justify-center items-center text-white text-2xl p-4 hover:bg-primary/90 transition-colors duration-200"
+						aria-label="بستن">
+						<ion-icon
+							name="close-outline"
+							aria-hidden="true"></ion-icon>
 					</button>
 				</div>
-				<h1 class="text-2xl font-dana-bold font-bold min-[991px]:hidden">مشخصات فاکتور</h1>
+				<h1
+					id="invoice-detail-title"
+					class="text-2xl font-dana-bold font-bold min-[991px]:hidden">
+					مشخصات فاکتور
+				</h1>
 			</header>
 			<!--  -->
 			<div class="mt-12">
 				<h1 class="text-2xl font-dana-bold font-bold text-center mb-8 max-[991px]:hidden">مشخصات فاکتور</h1>
-				<div class="grid grid-cols-1 gap-4 pb-30 min-[991px]:grid-cols-2 max-w-7xl mx-auto">
+				<form
+					class="grid grid-cols-1 gap-4 pb-30 min-[991px]:grid-cols-2 max-w-7xl mx-auto"
+					aria-label="فرم مشخصات فاکتور">
 					<div class="flex justify-center items-center w-full relative">
 						<div
 							class="w-full border-2 border-solid border-black/10 bg-gray-100 p-2 py-3 rounded-md pr-10 pointer-events-none select-none"
 							id="date"
-							data-req="false"></div>
+							data-req="false"
+							role="status"
+							aria-live="polite"></div>
 						<ion-icon
 							name="calendar-outline"
-							class="absolute right-2 text-2xl"></ion-icon>
+							class="absolute right-2 text-2xl"
+							aria-hidden="true"></ion-icon>
 					</div>
 					<div class="flex justify-center items-center w-full relative">
+						<label
+							for="shop-name"
+							class="sr-only"
+							>نام فروشگاه</label
+						>
 						<input
 							type="text"
 							placeholder="نام فروشگاه"
 							id="shop-name"
 							name="shop-name"
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:opacity-100"
+							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:opacity-100 transition-colors duration-200"
 							data-req="true"
-							autocomplete="name" />
+							autocomplete="name"
+							required />
 						<ion-icon
 							name="cart-outline"
-							class="absolute right-2 text-2xl"></ion-icon>
+							class="absolute right-2 text-2xl"
+							aria-hidden="true"></ion-icon>
 					</div>
 					<div class="flex justify-center items-center w-full relative">
+						<label
+							for="tel"
+							class="sr-only"
+							>شماره تلفن</label
+						>
 						<input
-							type="number"
+							type="tel"
 							placeholder="شماره تلفن (اختیاری)"
 							id="tel"
 							name="tel"
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:opacity-100 placeholder:text-right"
+							class="text-left w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:opacity-100 placeholder:text-right transition-colors duration-200"
 							data-req="false"
 							autocomplete="tel" />
 						<ion-icon
 							name="call-outline"
-							class="absolute right-2 text-2xl"></ion-icon>
+							class="absolute right-2 text-2xl"
+							aria-hidden="true"></ion-icon>
 					</div>
 					<!--  -->
 					<div class="flex justify-center items-center w-full relative">
+						<label
+							for="discount"
+							class="sr-only"
+							>درصد تخفیف</label
+						>
 						<input
 							type="number"
 							placeholder="درصد تخفیف (اختیاری)"
 							id="discount"
 							name="discount"
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:opacity-100"
+							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:opacity-100 transition-colors duration-200"
 							data-req="false"
-							autocomplete="off" />
+							autocomplete="off"
+							min="0"
+							max="100" />
 						<ion-icon
 							name="ticket-outline"
-							class="absolute right-2 text-2xl"></ion-icon>
+							class="absolute right-2 text-2xl"
+							aria-hidden="true"></ion-icon>
 					</div>
 					<!--  -->
 					<div class="flex justify-center items-center w-full relative">
+						<label
+							for="address"
+							class="sr-only"
+							>آدرس فروشگاه</label
+						>
 						<input
 							type="text"
-							placeholder=" آدرس فروشگاه (اختیاری)"
+							placeholder="آدرس فروشگاه (اختیاری)"
 							id="address"
 							name="address"
-							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:opacity-100"
+							class="w-full border-2 border-solid border-black/10 p-2 py-3 rounded-md pr-10 outline-none focus:border-primary placeholder:opacity-100 transition-colors duration-200"
 							data-req="false"
 							autocomplete="street-address" />
 						<ion-icon
 							name="location-outline"
-							class="absolute right-2 text-2xl"></ion-icon>
+							class="absolute right-2 text-2xl"
+							aria-hidden="true"></ion-icon>
 					</div>
-				</div>
+				</form>
 				<div class="flex justify-center items-center fixed right-0 bottom-0 w-full">
 					<button
 						id="next"
-						class="w-full flex justify-center items-center gap-2 cursor-pointer bg-blue-500 text-white text-2xl py-4"
-						title="ذخیره و ادامه">
+						class="w-full flex justify-center items-center gap-2 cursor-pointer bg-blue-500 text-white text-2xl py-4 hover:bg-blue-600 transition-colors duration-200"
+						title="ذخیره و ادامه"
+						aria-label="ذخیره و ادامه">
 						<span>ذخیره و ادامه</span>
-						<ion-icon name="arrow-forward-outline"></ion-icon>
+						<ion-icon
+							name="arrow-forward-outline"
+							aria-hidden="true"></ion-icon>
 					</button>
 				</div>
 			</div>
 		</div>
 		<!--  -->
-		<div class="add-product inset-0 fixed overflow-auto bg-white hidden print:hidden">
+		<div
+			class="add-product inset-0 fixed overflow-auto bg-white hidden print:hidden"
+			role="dialog"
+			aria-labelledby="product-list-title"
+			aria-modal="true">
 			<header class="flex items-center divide-x-2 divide-solid divide-white border-b-2 border-solid border-b-black/10">
 				<div class="flex">
 					<button
 						title="بستن"
 						id="close-product-list"
-						class="bg-primary flex justify-center items-center text-white text-2xl p-4">
-						<ion-icon name="close-outline"></ion-icon>
+						class="bg-primary flex justify-center items-center text-white text-2xl p-4 hover:bg-primary/90 transition-colors duration-200"
+						aria-label="بستن">
+						<ion-icon
+							name="close-outline"
+							aria-hidden="true"></ion-icon>
 					</button>
 				</div>
 				<div class="flex w-full">
 					<button
 						title="ذخیره فاکتور"
 						id="save-invoice"
-						class="bg-blue-600 w-full flex justify-center items-center text-white text-2xl p-4">
-						<ion-icon name="save-outline"></ion-icon>
+						class="bg-blue-600 w-full flex justify-center items-center text-white text-2xl p-4 hover:bg-blue-700 transition-colors duration-200"
+						aria-label="ذخیره فاکتور">
+						<ion-icon
+							name="save-outline"
+							aria-hidden="true"></ion-icon>
 					</button>
 				</div>
 				<div class="flex">
 					<button
 						title="بازگشت به عقب"
 						id="back-button"
-						class="bg-blue-800 w-full flex justify-center items-center text-white text-2xl p-4">
-						<ion-icon name="arrow-forward-outline"></ion-icon>
+						class="bg-blue-800 w-full flex justify-center items-center text-white text-2xl p-4 hover:bg-blue-900 transition-colors duration-200"
+						aria-label="بازگشت به عقب">
+						<ion-icon
+							name="arrow-forward-outline"
+							aria-hidden="true"></ion-icon>
 					</button>
 				</div>
 			</header>
 			<div class="grid grid-cols-12">
-				<ul class="col-span-4 flex flex-col divide-y-2 divide-solid divide-black/10 h-max sticky top-0">
-					<li
+				<nav
+					class="col-span-4 flex flex-col divide-y-2 divide-solid divide-black/10 h-max sticky top-0"
+					aria-label="دسته‌بندی محصولات">
+					<button
 						data-category="milk"
-						class="flex flex-col gap-2 justify-center items-center py-4 w-full bg-black/10 select-none cursor-pointer">
+						class="flex flex-col gap-2 justify-center items-center py-4 w-full bg-black/10 select-none cursor-pointer"
+						aria-label="محصولات شیر">
 						<span class="text-center">شیر</span>
 						<img
 							src="/images/icons/milk.svg"
 							alt=""
-							class="brightness-0" />
-					</li>
+							class="brightness-0"
+							aria-hidden="true" />
+					</button>
 					<li
 						data-category="cream"
 						class="flex flex-col gap-2 justify-center items-center py-4 w-full bg-black/10 select-none cursor-pointer">
@@ -278,56 +373,96 @@
 							alt=""
 							class="brightness-0" />
 					</li>
-				</ul>
+				</nav>
 				<div class="flex flex-col col-span-8 min-h-screen relative">
 					<div id="top"></div>
 					<!--  -->
 					<ul
-						class="product-lists flex flex-col justify-center items-center divide-y-1 divide-solid divide-white/50"></ul>
+						class="product-lists flex flex-col justify-center items-center divide-y-1 divide-solid divide-white/50"
+						role="list"></ul>
 				</div>
 			</div>
 		</div>
 		<!--  -->
 		<div
 			id="installModal"
-			class="fixed top-[-9%] right-0 w-full h-fit border-b border-solid border-black/10 bg-gray-300 bg-gradient-to-br from-gray-300 to-white hidden justify-center items-center opacity-0 z-99">
+			class="fixed top-[-9%] right-0 w-full h-fit border-b border-solid border-black/10 bg-gray-300 bg-gradient-to-br from-gray-300 to-white hidden justify-center items-center opacity-0 z-99"
+			role="dialog"
+			aria-labelledby="install-modal-title"
+			aria-modal="true">
 			<div class="flex justify-between items-center w-full mb-0 cr">
 				<header class="flex items-center gap-2">
 					<div class="text-3xl text-primary flex justify-center items-center max-[480px]:hidden">
-						<ion-icon name="phone-portrait-outline"></ion-icon>
+						<ion-icon
+							name="phone-portrait-outline"
+							aria-hidden="true"></ion-icon>
 					</div>
 					<div class="flex flex-col gap-1.5">
-						<h2 class="font-dana-bold font-bold"><span class="max-[480px]:hidden">وب</span> اپلیکیشن ویزتورا</h2>
+						<h2
+							id="install-modal-title"
+							class="font-dana-bold font-bold">
+							<span class="max-[480px]:hidden">وب</span> اپلیکیشن ویزتورا
+						</h2>
 						<p class="text-sm text-black/80">هم اکنون نصب کنید</p>
 					</div>
 				</header>
 				<div class="flex items-center gap-2">
 					<button
 						id="cancelInstall"
-						class="cursor-pointer bg-gray-300 border border-solid border-black/30 w-20 h-10 rounded-2xl">
+						class="cursor-pointer bg-gray-300 border border-solid border-black/30 w-20 h-10 rounded-2xl hover:bg-gray-400 transition-colors duration-200"
+						aria-label="بعدا نصب کن">
 						بعدا
 					</button>
 					<button
 						id="installBtn"
-						class="cursor-pointer bg-primary text-white w-20 h-10 rounded-2xl">
+						class="cursor-pointer bg-primary text-white w-20 h-10 rounded-2xl hover:bg-primary/90 transition-colors duration-200"
+						aria-label="نصب اپلیکیشن">
 						نصب
 					</button>
 				</div>
 			</div>
 		</div>
 		<!--  -->
-		<div class="invoice-preview inset-0 fixed bg-black/95 text-white overflow-auto hidden print:hidden">
+		<div
+			class="invoice-preview inset-0 fixed bg-black/95 text-white overflow-auto hidden print:hidden"
+			role="dialog"
+			aria-labelledby="preview-title"
+			aria-modal="true">
 			<div class="cr">
-				<h1 class="font-bold font-dana-bold pt-2 pb-4 mb-4 text-lg text-white border-b border-solid border-white/20">
+				<h1
+					id="preview-title"
+					class="font-bold font-dana-bold pt-2 pb-4 mb-4 text-lg text-white border-b border-solid border-white/20">
 					آیا از ذخیره فاکتور اطمینان دارید؟
 				</h1>
-				<table class="preview-cr border-collapse w-full text-center mb-5">
-					<th class="border border-solid border-white text-center p-4 bg-black">نام محصول</th>
-					<th class="border border-solid border-white text-center p-4 bg-black">تعداد</th>
+				<table
+					class="preview-cr border-collapse w-full text-center mb-5"
+					role="grid">
+					<thead>
+						<tr>
+							<th
+								scope="col"
+								class="border border-solid border-white text-center p-4 bg-black">
+								نام محصول
+							</th>
+							<th
+								scope="col"
+								class="border border-solid border-white text-center p-4 bg-black">
+								تعداد
+							</th>
+						</tr>
+					</thead>
 				</table>
 				<footer class="fixed bottom-0 w-full flex justify-between right-0 divide-solid divide-x-2 divide-white">
-					<button class="unsave flex justify-center items-center p-4 w-full bg-primary">بازگشت</button>
-					<button class="save flex justify-center items-center p-4 w-full bg-blue-500">ذخیره</button>
+					<button
+						class="unsave flex justify-center items-center p-4 w-full bg-primary hover:bg-primary/90 transition-colors duration-200"
+						aria-label="بازگشت">
+						بازگشت
+					</button>
+					<button
+						class="save flex justify-center items-center p-4 w-full bg-blue-500 hover:bg-blue-600 transition-colors duration-200"
+						aria-label="ذخیره فاکتور">
+						ذخیره
+					</button>
 				</footer>
 			</div>
 		</div>
