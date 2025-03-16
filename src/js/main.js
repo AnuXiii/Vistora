@@ -104,7 +104,7 @@ function invoiceManager() {
 			printJS({
 				printable: "printSection",
 				type: "html",
-				css: "https://vistora-one.vercel.app/assets/main-CY59OqxU.css",
+				css: "https://vistora-one.vercel.app/assets/main-CT7wf3X-.css",
 				scanStyles: false,
 				style: `
 						body{
