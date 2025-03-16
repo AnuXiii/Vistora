@@ -122,7 +122,7 @@ export function Counter() {
 
 		if (target.classList.contains("reducer")) {
 			if (value == 0) {
-				value = null;
+				value = "";
 			}
 		}
 
@@ -142,7 +142,6 @@ export function counterValidator() {
 				if (item.value < 0 || item.value == 0) {
 					item.value = "";
 				}
-
 				if (item.value.length > 5) {
 					item.classList.add("text-sm");
 				} else {

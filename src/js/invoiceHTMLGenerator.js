@@ -2,6 +2,7 @@ import { profitCalculator, discountCalculator, totalProfitDiscount, calculator }
 import { formatPrice } from "./formatPrice";
 
 export function invoiceHTMLGenerator(invoice) {
+	// Generate HTML for invoice
 	return /*html*/ `
 				<div class="m-auto py-2 px-1 min-[580px]:p-5 mb-8">
 					<header class="mb-8">

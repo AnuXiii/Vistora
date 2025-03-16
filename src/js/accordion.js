@@ -1,10 +1,12 @@
-// Accordion functionality
+// Accordion functionality module
 export function initAccordion() {
+	// Get all accordion buttons
 	const accButtons = document.querySelectorAll(".acc-button");
 
+	// Add click event to each button
 	accButtons.forEach((button) => {
 		button.addEventListener("click", () => {
-			// Close other accordion items
+			// Close other open accordion items
 			accButtons.forEach((otherButton) => {
 				if (otherButton !== button) {
 					closeAccordionItem(otherButton);
@@ -17,6 +19,7 @@ export function initAccordion() {
 	});
 }
 
+// Function to close accordion item
 function closeAccordionItem(button) {
 	button.parentNode.classList.remove("bg-gray-100");
 	button.classList.remove("ac-active");
@@ -24,6 +27,7 @@ function closeAccordionItem(button) {
 	button.nextElementSibling.classList.add("hidden");
 }
 
+// Function to toggle accordion item
 function toggleAccordionItem(button) {
 	button.parentNode.classList.toggle("bg-gray-100");
 	button.classList.toggle("ac-active");
