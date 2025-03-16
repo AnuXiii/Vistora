@@ -52,9 +52,5 @@ if (installModal) {
 			installModal.style.display = "none";
 			localStorage.setItem("pwaInstalled", "later");
 		});
-
-		window.addEventListener("afterinstallprompt", (e) => {
-			console.log(e);
-		});
 	}
 }

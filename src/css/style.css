@@ -47,14 +47,14 @@
 	--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 
 	/* Animations */
-	--animate-top-in: bounce 0.5s 3s ease-in-out forwards;
+	--animate-top-in: top-in 0.5s 3s ease-in-out forwards;
 }
 
 /* Animations */
-@keyframes bounce {
+@keyframes top-in {
 	to {
 		opacity: 1;
-		transform: translateY(0);
+		top: 0;
 	}
 }
 
