@@ -21,7 +21,7 @@ export function saveInvoiceDetails() {
 	discountInput = document.getElementById("discount");
 	addressInput = document.getElementById("address");
 
-	if (!shopNameInput.value) {
+	if (!shopNameInput.value?.trim()) {
 		showAlert("نام فروشگاه وارد نشده است", colors.error);
 		return;
 	}
