@@ -1,5 +1,4 @@
 // Import necessary libraries and modules
-import { Analytics } from "@vercel/analytics/react";
 import printJS from "print-js"; // Library to handle printing functionality
 import { products } from "./data"; // Import product data from a local file
 import { showAlert, colors } from "./showAlert"; // Import alert utility functions
