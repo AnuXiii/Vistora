@@ -24,7 +24,9 @@ export const emptySection = document.querySelector(".empty-section");
 
 // Update the date element in the invoice detail page if it exists
 if (dateElement) {
-	dateElement.textContent = getNowDate();
+	setInterval(() => {
+		dateElement.textContent = getNowDate();
+	}, 1000);
 }
 
 // Run link status checker to ensure all resources are loaded correctly
