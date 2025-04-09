@@ -39,7 +39,7 @@ export function renderInvoice(invoice) {
 							</button>
 						</div>
 					</header>
-					<div class="flex justify-between max-[480px]:flex-col gap-1 p-4 bg-gray-200">
+					<div class="flex justify-between max-[480px]:flex-col gap-4 p-4 bg-gray-200">
 						<div class="flex gap-1">
 							<span class="text-black/70">کد فاکتور:</span>
 							<span class="text-primary font-bold">${invoice.id}</span>
