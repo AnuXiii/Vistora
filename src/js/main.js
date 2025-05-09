@@ -17,6 +17,9 @@ import { downloadInvoiceAsImage } from "./downloadInvoiceAsImage";
 import { searchByName } from "./searchInvoice";
 import { renderInvoice } from "./renderInvoice";
 
+//
+import { changeModalLoader } from "./components/changeModal";
+
 // Select DOM elements for product categories, product lists, and other UI components
 export const productCategories = document.querySelectorAll("[data-category]");
 export const resultContainer = document.querySelector(".result-container");
@@ -126,4 +129,5 @@ function invoiceManager() {
 document.addEventListener("DOMContentLoaded", () => {
 	invoiceManager();
 	searchByName();
+	changeModalLoader();
 });

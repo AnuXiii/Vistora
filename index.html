@@ -467,6 +467,46 @@
 			</div>
 		</div>
 		<!--  -->
+		<!-- change logs modal here -->
+		<div
+			id="changes-modal"
+			class="flex justify-center items-center fixed inset-0 w-full bg-black/90 z-40 print:hidden"
+			role="dialog"
+			aria-modal="true">
+			<div class="cr mb-0 relative w-full bg-black h-screen max-h-[95%] max-w-[95%] rounded-lg overflow-hidden">
+				<div
+					class="h-32 w-full bg-gray-900 bg-[url('/images/product-bg.webp')] bg-center bg-contain bg-no-repeat rounded-lg border border-solid border-white/10"></div>
+				<header class="flex justify-between items-center gap-12 -translate-y-12 px-4">
+					<h1 class="text-4xl font-dana-bold text-gray-50 max-sm:text-xl">لیست تغییرات</h1>
+					<div class="p-4 w-20 h-20 flex justify-center items-center rounded-full bg-blue-100 max-sm:w-14 max-sm:h-14">
+						<img
+							src="/images/icons/changes.svg"
+							alt="changes"
+							class="w-full h-full" />
+					</div>
+				</header>
+				<ul class="flex flex-col gap-4 divide-y-2 divide-solid divide-white/10 overflow-y-auto max-h-[90%]">
+					<li class="flex gap-4 items-center text-gray-200/80 pb-8 p-4">
+						<i class="block w-5 h-5 rounded-full bg-conic bg-primary from-primary to-blue-500"></i>
+						<p class="flex-1/2">اصلاح قیمت محصولات</p>
+						<span class="text-sm text-gray-200/60">1404/02/19</span>
+					</li>
+					<li class="flex gap-4 items-center text-gray-200/80 pb-8 p-4">
+						<i class="block w-5 h-5 rounded-full bg-conic bg-primary from-primary to-blue-500"></i>
+						<p class="flex-1/2">رفع برخی مشکلات جرئی</p>
+						<span class="text-sm text-gray-200/60">1404/02/19</span>
+					</li>
+				</ul>
+				<footer class="flex justify-center w-full fixed right-0 bottom-7">
+					<button
+						class="btn text-white bg-primary"
+						id="close-changes">
+						بستن
+					</button>
+				</footer>
+			</div>
+		</div>
+		<!--  -->
 		<script
 			type="module"
 			src="/src/js/main.js"></script>
