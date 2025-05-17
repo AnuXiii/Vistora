@@ -18,7 +18,8 @@ import { searchByName } from "./searchInvoice";
 import { renderInvoice } from "./renderInvoice";
 
 //
-import { changeModalLoader } from "./components/changeModal";
+import { changeModalLoader } from "./changeLog/changeModal";
+import { editInvoice } from "./editor/edit-invoice";
 
 // Select DOM elements for product categories, product lists, and other UI components
 export const productCategories = document.querySelectorAll("[data-category]");
@@ -74,13 +75,10 @@ function invoiceManager() {
 		const printBtn = e.target.closest(".print-invoice");
 		const downloadBtn = e.target.closest(".download-invoice");
 		const editBtn = e.target.closest(".edit-invoice");
-		if (editBtn) {
-			showAlert("به زودی گزینه ویرایش فاکتور اضافه خواهد شد");
-		}
 
-		if (!printBtn && !downloadBtn) return;
+		if (!printBtn && !downloadBtn && !editBtn) return;
 
-		const invoiceCard = printBtn ? printBtn.closest(".card") : downloadBtn.closest(".card");
+		const invoiceCard = e.target.closest(".card");
 		const invoiceId = invoiceCard.getAttribute("data-id");
 
 		let storedInvoices = JSON.parse(localStorage.getItem("invoices")) || [];
@@ -97,6 +95,8 @@ function invoiceManager() {
 			printInvoice(invoice);
 		} else if (downloadBtn) {
 			downloadInvoiceAsImage(invoice, downloadBtn);
+		} else if (editBtn) {
+			editInvoice(invoice);
 		}
 
 		// Function to print the invoice

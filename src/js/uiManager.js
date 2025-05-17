@@ -39,11 +39,20 @@ export function productsMenuController() {
 export function initProducts() {
 	products.forEach((item, index) => {
 		const li = document.createElement("li");
-		li.classList.add("hidden", "flex-col", "justify-between", "text-white", "w-full", "bg-black", "h-fit");
+		li.classList.add(
+			"product-item",
+			"hidden",
+			"flex-col",
+			"justify-between",
+			"text-white",
+			"w-full",
+			"bg-black",
+			"h-fit"
+		);
 		li.setAttribute("data-hashtag", `${item.category}`);
 		li.innerHTML = /*htm*/ `
 							<header class="cursor-pointer py-6 px-4 flex justify-between items-center select-none">
-								<span class="text-xs">${item.name}</span>
+								<span class="text-xs product-name">${item.name}</span>
 							<ion-icon name="ellipsis-vertical-outline" class="text-white"></ion-icon>
 							</header>
 							<div class="p-4 pb-6 product-info flex-col gap-6 hidden">

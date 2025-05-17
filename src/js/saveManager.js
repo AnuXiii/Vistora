@@ -3,6 +3,7 @@ import { renderInvoice } from "./renderInvoice";
 import { invoiceData } from "./invoiceDetailManager";
 import { addProductModal, invoiceDetail } from "./modalsController";
 import { dataCleaner } from "./modalsController";
+import { removeDuplicateInvoice } from "./editor/edit-invoice";
 
 const saveProductListBtn = document.getElementById("save-invoice");
 const invoicePreview = document.querySelector(".invoice-preview");
@@ -52,10 +53,11 @@ export function createInvoiceCard() {
 		return;
 	}
 
-	selectedProducts.forEach((item) => {
+	selectedProducts.forEach((item, index) => {
 		const tr = document.createElement("tr");
 		tr.className = "product-preview";
 		tr.innerHTML = /*html*/ `
+			<td class="border border-solid border-white text-center p-4 bg-[#303030]">${index + 1}</td>
 			<td class="border border-solid border-white text-center p-4 bg-[#303030]">${item.name}</td>
 			<td class="border border-solid border-white text-center p-4 bg-[#303030]">${item.count}</td>
 		`;
@@ -64,7 +66,11 @@ export function createInvoiceCard() {
 	invoicePreview.classList.remove("hidden");
 }
 
-document.querySelector(".save")?.addEventListener("click", handleSaveInvoice);
+document.querySelector(".save")?.addEventListener("click", () => {
+	removeDuplicateInvoice();
+	handleSaveInvoice();
+});
+
 document.querySelector(".unsave")?.addEventListener("click", handleUnsaveInvoice);
 
 export function handleSaveInvoice() {
@@ -81,7 +87,10 @@ export function handleSaveInvoice() {
 		totalSell,
 	};
 
-	const existingInvoiceIndex = invoices.findIndex((inv) => inv.id === newInvoice.id);
+	const saved = localStorage.getItem("invoices");
+	const invoices = saved ? JSON.parse(saved) : [];
+
+	const existingInvoiceIndex = invoices.findIndex((inv) => String(inv.id) === String(newInvoice.id));
 	if (existingInvoiceIndex !== -1) {
 		invoices[existingInvoiceIndex] = newInvoice;
 	} else {
