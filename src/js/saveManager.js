@@ -106,7 +106,7 @@ export function handleSaveInvoice() {
 	invoiceDetail.classList.add("hidden");
 	document.body.classList.remove("overflow-hidden");
 
-	showAlert("فاکتور با موفقیت ذخیره شد", colors.succsess);
+	showAlert("فاکتور با موفقیت ایجاد شد", colors.succsess);
 	invoicePreview.classList.add("hidden");
 	invoicePreview.querySelectorAll(".product-preview").forEach((item) => item.remove());
 }
