@@ -267,6 +267,20 @@ export const products = [
 	},
 	{
 		category: "yogurt",
+		name: "ماست 1400 گرمی کم چرب",
+		factory_price: 645000,
+		sell_price: 750000,
+		img: "https://taravatdairy.com/assets/img/product/%D8%AA%D9%86%D9%88%D8%B9%20%D8%AF%D8%B1%20%D8%A8%D8%B3%D8%AA%D9%87%E2%80%8C%D8%A8%D9%86%D8%AF%DB%8C%20%D9%85%D8%A7%D8%B3%D8%AA%20%D9%BE%D8%A7%D8%B3%D8%AA%D9%88%D8%B1%DB%8C%D8%B2%D9%87%20%DA%A9%D9%85%E2%80%8C%DA%86%D8%B1%D8%A8%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
+	},
+	{
+		category: "yogurt",
+		name: "ماست 1400 گرمی پر چرب",
+		factory_price: 730000,
+		sell_price: 850000,
+		img: "https://taravatdairy.com/assets/img/product/%D8%AA%D9%86%D9%88%D8%B9%20%D8%AF%D8%B1%20%D8%A8%D8%B3%D8%AA%D9%87%E2%80%8C%D8%A8%D9%86%D8%AF%DB%8C%20%D9%85%D8%A7%D8%B3%D8%AA%20%D9%BE%D8%A7%D8%B3%D8%AA%D9%88%D8%B1%DB%8C%D8%B2%D9%87%20%DA%A9%D9%85%E2%80%8C%DA%86%D8%B1%D8%A8%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
+	},
+	{
+		category: "yogurt",
 		name: "ماست 1600 گرمی کم چرب",
 		factory_price: 730000,
 		sell_price: 850000,
