@@ -106,7 +106,7 @@ export function invoiceHTMLGenerator(invoice) {
 						<small class="leading-4">توجه سود شما از خرید بدون احتساب قیمت فروش محصولات رستورانی می باشد.</small>
 					</div>
 					<!--  -->
-					<p class="mt-10 pb-5 text-[0.5rem] font-bold text-center">powered by vistora - invoice creator</p>
+					<p class="mt-10 pb-5 text-xs font-bold text-center">powered by vistora - invoice generator</p>
 				</footer>
 	`;
 }

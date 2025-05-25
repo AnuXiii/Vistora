@@ -53,7 +53,7 @@ export function renderInvoice(invoice) {
 					<footer class="flex justify-between items-center divide-x-2 divide-solid divide-white">
 						<div class="flex w-full">
 							<button
-								class="delete-invoice flex justify-center items-center w-full bg-primary text-white text-2xl p-4 max-[480px]:p-3"
+								class="delete-invoice cursor-pointer flex justify-center items-center w-full bg-primary text-white text-2xl p-4"
 								title="حذف"
 								aria-label="حذف">
 								<ion-icon name="trash-outline"></ion-icon>
@@ -61,7 +61,7 @@ export function renderInvoice(invoice) {
 						</div>
 						<div class="flex w-full">
 							<button
-								class="edit-invoice flex justify-center items-center w-full bg-blue-800 text-white text-2xl p-4 max-[480px]:p-3"
+								class="edit-invoice cursor-pointer flex justify-center items-center w-full bg-blue-800 text-white text-2xl p-4"
 								title="ویرایش"
 								aria-label="ویرایش">
 								<ion-icon name="pencil-outline"></ion-icon>
@@ -69,7 +69,7 @@ export function renderInvoice(invoice) {
 						</div>
 						<div class="flex w-full">
 							<button
-								class="print-invoice flex justify-center items-center w-full bg-blue-500 text-white text-2xl p-4 max-[480px]:p-3"
+								class="print-invoice cursor-pointer flex justify-center items-center w-full bg-blue-500 text-white text-2xl p-4"
 								title="پرینت"
 								aria-label="پرینت">
 								<ion-icon name="print-outline"></ion-icon>

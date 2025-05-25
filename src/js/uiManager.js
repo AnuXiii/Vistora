@@ -12,6 +12,7 @@ export function productsMenuController() {
 		// Add click event listener to each category
 		item.addEventListener("click", () => {
 			// Remove the 'active' class from the previously active category
+
 			if (item.parentNode.querySelector(".active")) {
 				item.parentNode.querySelector(".active").classList.remove("active");
 			}
@@ -76,7 +77,7 @@ export function initProducts() {
 										type="number"
 										placeholder="تعداد"
                                         id="product-${index + 1}"
-										class="number-input text-2xl w-full text-center border-none outline-none placeholder:text-base placeholder:opacity-100" />
+										class="number-input bg-black h-full text-2xl w-full text-center border-none outline-none placeholder:text-base placeholder:opacity-100" />
 									<button class="reducer p-2 w-12 flex justify-center items-center cursor-pointer bg-primary rounded-tl-md rounded-bl-md">
 										<ion-icon
 											name="remove-outline"
@@ -102,7 +103,18 @@ export function initProducts() {
 // Function to handle collapsing and expanding product boxes
 export const productsList = document.querySelector(".product-lists");
 export function productBoxCollapser() {
+	const productItem = document.querySelectorAll(".product-item");
 	const product = document.querySelectorAll("[data-hashtag] header");
+
+	productItem.forEach((item) => {
+		item.addEventListener("click", () => {
+			if (productsList.querySelector(".bg-blue-950")) {
+				productsList.querySelector(".bg-blue-950").classList.replace("bg-blue-950", "bg-black");
+			}
+			item.classList.add("bg-blue-950");
+		});
+	});
+
 	product.forEach((item) => {
 		item.addEventListener("click", () => {
 			if (productsList.querySelector(".product-info.flex")) {
