@@ -1,4 +1,5 @@
 import Toastify from "toastify-js";
+
 export const showAlert = (msg, type) => {
 	Toastify({
 		text: msg,

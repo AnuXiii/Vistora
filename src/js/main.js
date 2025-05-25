@@ -106,10 +106,12 @@ function invoiceManager() {
 			printSection.innerHTML = invoiceHTMLGenerator(invoice);
 			document.body.appendChild(printSection);
 
+			const findCssLink = document.querySelector('link[rel="stylesheet"]');
+
 			printJS({
 				printable: "printSection",
 				type: "html",
-				css: "https://vistora-one.vercel.app/assets/main-CeHF-fVX.css",
+				css: findCssLink ? findCssLink.href : "/src/css/style.css",
 				scanStyles: false,
 				style: `
 						body{
