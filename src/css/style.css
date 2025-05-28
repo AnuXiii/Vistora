@@ -142,7 +142,14 @@
 
 	/* Fade In Animation */
 	.fade-in {
-		animation: fade-in 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+		animation: fade-in 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+	}
+
+	.hero-btn {
+		@apply text-white bg-blue-600 cursor-pointer flex flex-1 justify-center items-center gap-2;
+		@apply font-semibold text-base md:text-lg;
+		@apply outline-2 outline-solid outline-blue-600 border-2 border-solid border-white px-4 py-3 rounded-md duration-200;
+		@apply hover:bg-primary hover:text-white hover:outline-primary hover:scale-102;
 	}
 }
 
@@ -217,4 +224,25 @@
 /* Toast Styles */
 .toastify {
 	@apply max-w-[90%] text-center;
+}
+
+/* main modal component styles */
+.main-modal {
+	@apply bg-black/90 fixed inset-0 flex flex-col justify-center items-center min-h-screen;
+}
+
+.modal-content {
+	@apply relative mx-auto w-[420px] max-w-[95%] p-4 border border-solid border-white/30 rounded-lg bg-gray-950 flex flex-col gap-6;
+
+	p {
+		@apply text-center text-lg text-slate-50;
+	}
+}
+
+.modal-actions {
+	@apply mt-6 justify-between items-center gap-6;
+}
+
+.close-modal {
+	@apply cursor-pointer flex justify-center items-center absolute top-[-25px] right-[-5px] md:right-[-15px] text-2xl bg-rose-500 text-white w-10 h-10 rounded-full;
 }

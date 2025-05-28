@@ -42,5 +42,6 @@ export function dataCleaner() {
 	document.querySelectorAll("[data-req]").forEach((input) => (input.value = null));
 	document.querySelectorAll(".count-action input").forEach((input) => (input.value = null));
 	document.querySelectorAll(".product-info").forEach((div) => div.classList.replace("flex", "hidden"));
+	document.querySelectorAll(".product-item").forEach((item) => item.classList.remove("bg-blue-950"));
 	productCategories[0] ? productCategories[0].click() : null;
 }

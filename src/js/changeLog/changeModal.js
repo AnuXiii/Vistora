@@ -1,11 +1,7 @@
 const changeLogData = [
 	{
-		title: "اضافه شدن محصولات جدید",
-		date: "1404/02/01",
-	},
-	{
-		title: "اضافه شدن قابلیت ویرایش فاکتور",
-		date: "1404/02/27",
+		title: "اضافه شدن لیست اقدامات",
+		date: "1404/03/07",
 	},
 ];
 
@@ -29,7 +25,7 @@ const changesModal = document.getElementById("changes-modal");
 const closeChanges = document.getElementById("close-changes");
 
 export function changeModalLoader() {
-	let setClosed = localStorage.getItem("modal-closed-2", false);
+	let setClosed = localStorage.getItem("modal-closed-3", false);
 
 	window.addEventListener("load", () => {
 		if (!setClosed) {
@@ -40,7 +36,7 @@ export function changeModalLoader() {
 	});
 
 	closeChanges?.addEventListener("click", () => {
-		localStorage.setItem("modal-closed-2", true);
+		localStorage.setItem("modal-closed-3", true);
 		changesModal.classList.replace("flex", "hidden");
 	});
 }

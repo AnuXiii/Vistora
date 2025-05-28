@@ -8,6 +8,8 @@ export function editInvoice(invoice) {
 	editingInvoiceId = invoice.id;
 
 	invoiceDetail.classList.remove("hidden");
+	document.body.classList.add("overflow-hidden");
+
 	document.getElementById("shop-name").value = invoice.shopName;
 	document.getElementById("tel").value = invoice.phone || "";
 	document.getElementById("discount").value = invoice.discount || "";

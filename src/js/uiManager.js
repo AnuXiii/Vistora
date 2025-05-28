@@ -51,7 +51,7 @@ export function initProducts() {
 			"h-fit"
 		);
 		li.setAttribute("data-hashtag", `${item.category}`);
-		li.innerHTML = /*htm*/ `
+		li.innerHTML = /*html*/ `
 							<header class="cursor-pointer py-6 px-4 flex justify-between items-center select-none">
 								<span class="text-xs product-name">${item.name}</span>
 							<ion-icon name="ellipsis-vertical-outline" class="text-white"></ion-icon>

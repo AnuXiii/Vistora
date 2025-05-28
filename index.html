@@ -69,28 +69,50 @@
 			class="print:hidden">
 			<v-header></v-header>
 			<!--  -->
+			<section class="relative my-15">
+				<div
+					class="absolute inset-0 bg-gradient-to-t from-blue-600 via-primary to-blue-900 z-[-1] blur-2xl opacity-10"></div>
+				<div class="cr mb-0">
+					<h1 class="mb-10 text-4xl font-bold font-dana-bold">لیست اقدامات</h1>
+					<header class="grid grid-cols-12 lg:grid-cols-4 gap-4">
+						<button
+							id="clear-all-invoices"
+							class="hero-btn col-span-full lg:col-span-1"
+							title="پاک کردن تمامی فاکتورها"
+							aria-label="پاک کردن تمامی فاکتورها">
+							<span class="text-nowrap">پاک کردن تمامی فاکتور ها</span>
+						</button>
+						<button
+							id="clear-yesterday-invoices"
+							class="hero-btn col-span-full lg:col-span-1"
+							title="پاک کردن فاکتورهای روز قبل"
+							aria-label="پاک کردن فاکتورهای روز قبل">
+							<span class="text-nowrap">پاک کردن فاکتور های روز قبل</span>
+						</button>
+						<button
+							id="calculate-sales"
+							class="hero-btn col-span-6 lg:col-span-1"
+							title="محاسبه فروش"
+							aria-label="محاسبه فروش">
+							<span class="text-nowrap">محاسبه فروش</span>
+						</button>
+						<button
+							id="send-msg"
+							class="hero-btn col-span-6 lg:col-span-1 bg-green-600 outline-green-600 hover:text-white"
+							title="ارسال پیام"
+							aria-label="ارسال پیام">
+							<ion-icon
+								name="send-outline"
+								class="text-xl"></ion-icon>
+							<span class="text-nowrap">ارسال پیام</span>
+						</button>
+					</header>
+				</div>
+			</section>
+			<!--  -->
 			<main
 				role="main"
 				class="cr mb-12 max-h-screen">
-				<!-- Search Section -->
-				<section class="relative flex items-center w-full mb-16 bg-white">
-					<label
-						for="search"
-						class="sr-only"
-						>جستجو بر اساس نام</label
-					>
-					<input
-						type="search"
-						name="search"
-						id="search"
-						placeholder="جستجو بر اساس نام"
-						class="border-2 border-solid border-black/10 rounded-md w-full p-4 pl-10 appearance-none outline-none shadow-lg shadow-black/5 focus:border-primary placeholder:opacity-100 transition-colors duration-200"
-						aria-label="جستجو بر اساس نام" />
-					<ion-icon
-						name="search-outline"
-						class="absolute left-3 text-2xl"
-						aria-hidden="true"></ion-icon>
-				</section>
 				<!--  -->
 				<section
 					class="empty-section flex flex-col justify-center items-center gap-8 p-8 max-[480px]:p-4 rounded-md border-[4px] border-dashed border-black/20"
@@ -137,11 +159,13 @@
 							aria-hidden="true"></ion-icon>
 					</button>
 				</div>
-				<h1
-					id="invoice-detail-title"
-					class="text-2xl font-dana-bold font-bold min-[991px]:hidden">
-					مشخصات فاکتور
-				</h1>
+				<div class="flex gap-4">
+					<h1
+						id="invoice-detail-title"
+						class="text-2xl font-dana-bold font-bold min-[991px]:hidden">
+						مشخصات فاکتور
+					</h1>
+				</div>
 			</header>
 			<!--  -->
 			<div class="mt-12">
@@ -469,10 +493,10 @@
 		<!-- change logs modal here -->
 		<div
 			id="changes-modal"
-			class="hidden justify-center items-center fixed inset-0 w-full bg-black/90 z-40 print:hidden"
+			class="hidden justify-center items-center fixed inset-0 w-full bg-black/80 z-40 print:hidden"
 			role="dialog"
 			aria-modal="true">
-			<div class="cr mb-0 relative w-full bg-black h-screen max-h-[95%] rounded-lg overflow-hidden">
+			<div class="cr mb-0 relative w-full max-w-[95%] bg-black rounded-lg overflow-hidden">
 				<div
 					class="h-32 w-full bg-gray-900 bg-[url('/images/product-bg.webp')] bg-center bg-contain bg-no-repeat rounded-lg border border-solid border-white/10"></div>
 				<header class="flex justify-between items-center gap-12 -translate-y-12 px-4">
@@ -484,10 +508,10 @@
 							class="w-full h-full" />
 					</div>
 				</header>
-				<ul class="change-logs flex flex-col gap-4 divide-y-2 divide-solid divide-white/10 overflow-y-auto pb-25"></ul>
+				<ul class="change-logs flex flex-col gap-4 divide-y-2 divide-solid divide-white/10 overflow-y-auto"></ul>
 				<footer class="flex justify-center w-full fixed right-0 bottom-7">
 					<button
-						class="btn text-white bg-primary"
+						class="btn text-white bg-primary text-2xl"
 						id="close-changes">
 						بستن
 					</button>

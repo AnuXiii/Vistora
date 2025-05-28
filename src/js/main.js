@@ -14,8 +14,9 @@ import { backToInvoiceDetails } from "./backToDetail";
 import { totalAmount, totalSell, createInvoiceCard, handleSaveInvoice, handleUnsaveInvoice } from "./saveManager";
 import { invoiceHTMLGenerator } from "./invoiceHTMLGenerator";
 import { downloadInvoiceAsImage } from "./downloadInvoiceAsImage";
-import { searchByName } from "./searchInvoice";
 import { renderInvoice } from "./renderInvoice";
+
+import { clearInvoices, clearYesterdayInvoices, calculateSales } from "./headerActions";
 
 //
 import { changeModalLoader } from "./changeLog/changeModal";
@@ -127,9 +128,8 @@ function invoiceManager() {
 	});
 }
 
-// Initialize invoice manager and search functionality when the DOM is fully loaded
+// Initialize invoice manager functionality when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
 	invoiceManager();
-	searchByName();
 	changeModalLoader();
 });

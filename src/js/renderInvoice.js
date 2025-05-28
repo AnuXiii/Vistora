@@ -82,6 +82,7 @@ export function renderInvoice(invoice) {
 	emptySection?.classList.add("hidden");
 	setTimeout(() => {
 		invoiceCard.classList.replace("opacity-50", "opacity-100");
+		resultContainer?.scrollIntoView({ behavior: "smooth" });
 	}, 500);
 
 	// Event listener to delete an invoice
