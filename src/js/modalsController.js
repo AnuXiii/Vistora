@@ -23,6 +23,7 @@ closeNav?.addEventListener("click", () => {
 createInvoiceBtn?.addEventListener("click", () => {
 	invoiceDetail.classList.remove("hidden");
 	document.body.classList.add("overflow-hidden");
+	document.getElementById("invoice-detail-title").innerHTML = "مشخصات فاکتور";
 });
 
 closeInvoiceDetailBtn?.addEventListener("click", () => {

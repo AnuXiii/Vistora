@@ -16,7 +16,7 @@ import { invoiceHTMLGenerator } from "./invoiceHTMLGenerator";
 import { downloadInvoiceAsImage } from "./downloadInvoiceAsImage";
 import { renderInvoice } from "./renderInvoice";
 
-import { clearInvoices, clearYesterdayInvoices, calculateSales } from "./headerActions";
+import { clearInvoices, calculateSales } from "./headerActions";
 
 //
 import { changeModalLoader } from "./changeLog/changeModal";

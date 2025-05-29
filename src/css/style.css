@@ -130,7 +130,7 @@
 
 	/* Button Styles */
 	.btn {
-		@apply cursor-pointer inline-flex items-center justify-center px-4 py-2 rounded-lg;
+		@apply relative cursor-pointer inline-flex items-center justify-center px-4 py-2 rounded-lg;
 		@apply font-dana-bold font-bold transition-all duration-300;
 		@apply focus:outline-none focus:ring-2 focus:ring-offset-2;
 	}
@@ -149,7 +149,7 @@
 		@apply text-white bg-blue-600 cursor-pointer flex flex-1 justify-center items-center gap-2;
 		@apply font-semibold text-base md:text-lg;
 		@apply outline-2 outline-solid outline-blue-600 border-2 border-solid border-white px-4 py-3 rounded-md duration-200;
-		@apply hover:bg-primary hover:text-white hover:outline-primary hover:scale-102;
+		@apply hover:scale-102;
 	}
 }
 
@@ -245,4 +245,58 @@
 
 .close-modal {
 	@apply cursor-pointer flex justify-center items-center absolute top-[-25px] right-[-5px] md:right-[-15px] text-2xl bg-rose-500 text-white w-10 h-10 rounded-full;
+}
+
+/* form styles start here */
+.contact-section {
+	@apply grid gap-12 grid-cols-1 md:grid-cols-2;
+}
+
+.contact-figure {
+	@apply w-full h-full;
+
+	img {
+		@apply h-96 w-full object-cover rounded-lg drop-shadow-2xl;
+	}
+}
+
+.form-control {
+	@apply relative;
+}
+
+.form {
+	@apply grid gap-12;
+}
+
+.input-holder {
+	@apply relative grid gap-6;
+
+	label span {
+		@apply font-semibold text-xl text-black/70 block mb-2;
+	}
+}
+
+.input {
+	@apply text-xl w-full py-3 px-4 rounded-lg border border-solid border-black/20 shadow-md;
+	@apply bg-white transition-[outline-color] duration-300 ease-in-out outline-4 outline-solid outline-transparent;
+	@apply focus-within:outline-primary/20;
+}
+
+.textarea {
+	@apply min-h-[100px] max-h-[200px];
+}
+
+/* when form is submited add sending class to the send button */
+.sending {
+	@apply flex justify-center items-center pointer-events-none opacity-50;
+	animation: fade-in 0.5s ease-in-out forwards;
+
+	&::after,
+	&::before {
+		@apply content-[""] absolute inset-0 bg-primary rounded-lg;
+	}
+
+	&::after {
+		@apply flex justify-center items-center m-auto w-9 h-9 rounded-full border-2 border-solid border-white border-l-transparent animate-spin;
+	}
 }

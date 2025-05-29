@@ -1,0 +1,136 @@
+<!doctype html>
+<html
+	lang="fa"
+	dir="rtl">
+	<head>
+		<!-- Meta Tags -->
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="فاکتور ساز آنلاین محصولات طراوت به آسانی فاکتور های خود را ثبت و بلافاصله چاپ نمایید" />
+		<meta
+			name="keywords"
+			content="فاکتور،طراوت،فاکتور ساز،فاکتور ساز آنلاین،لبنیات" />
+		<meta
+			name="author"
+			content="Mahdi rostami" />
+		<meta
+			name="robots"
+			content="index, follow" />
+
+		<!-- Open Graph / Social Media Meta Tags -->
+		<meta
+			property="og:title"
+			content="Vistora - ارسال نظر" />
+		<meta
+			property="og:description"
+			content="فاکتور ساز آنلاین محصولات طراوت به آسانی فاکتور های خود را ثبت و بلافاصله چاپ نمایید" />
+		<meta
+			property="og:type"
+			content="website" />
+		<meta
+			property="og:image"
+			content="/images/logo.png" />
+
+		<!-- Title and Favicon -->
+		<title>Vistora - ارسال نظر</title>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/images/logo.png" />
+		<link
+			rel="manifest"
+			href="/manifest.json" />
+
+		<!-- External Resources -->
+		<script
+			type="module"
+			src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+		<!-- Internal Styles -->
+		<link
+			rel="stylesheet"
+			href="/src/css/style.css" />
+	</head>
+	<body>
+		<!--  -->
+		<div
+			id="app"
+			role="application"
+			class="print:hidden">
+			<v-header></v-header>
+			<!-- main section -->
+			<main class="cr">
+				<header class="flex flex-col justify-center items-center gap-4">
+					<h1 class="text-center text-3xl font-dana-bold font-bold max-[991px]:text-2xl">
+						ارسال نظر ، انتقادات و پیشنهادات
+					</h1>
+					<p class="text-center text-sm text-black/70">نظر شما باعث پیشرفت در توسعه و مدیریت بهتر ثاثیر دارد</p>
+				</header>
+			</main>
+			<!--  -->
+			<section class="relative">
+				<div class="cr">
+					<div class="contact-section">
+						<div class="form-control">
+							<form
+								class="form"
+								id="contact-form"
+								name="contact-form">
+								<div class="input-holder">
+									<label for="name">
+										<span>نام شما</span>
+										<input
+											type="text"
+											name="name"
+											id="name"
+											aria-label="نام شما"
+											required
+											class="input" />
+									</label>
+								</div>
+								<div class="input-holder">
+									<label for="msg">
+										<span>پیغام شما</span>
+										<textarea
+											name="msg"
+											id="msg"
+											aria-label="پیغام شما"
+											required
+											class="input textarea"></textarea>
+									</label>
+								</div>
+								<button
+									id="send-msg"
+									title="send"
+									aria-label="send"
+									class="btn btn-primary py-3 px-4 text-xl">
+									ارسال
+								</button>
+							</form>
+						</div>
+						<!--  -->
+						<figure class="contact-figure">
+							<img
+								src="/images/contact-vistora.png"
+								alt="contact vistora"
+								loading="lazy"
+								class="figure-img" />
+						</figure>
+					</div>
+				</div>
+			</section>
+			<!-- main section -->
+		</div>
+		<!--  -->
+		<v-footer></v-footer>
+		<!--  -->
+		<!-- Scripts -->
+		<script
+			type="module"
+			src="/src/js/main.js"></script>
+	</body>
+</html>

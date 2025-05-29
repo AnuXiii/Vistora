@@ -21,6 +21,7 @@
 		"vite-bundle-visualizer": "^0.9.0"
 	},
 	"dependencies": {
+		"@emailjs/browser": "^4.4.1",
 		"@tailwindcss/postcss": "^4.0.8",
 		"@tailwindcss/vite": "^4.0.6",
 		"dirname": "^0.1.0",

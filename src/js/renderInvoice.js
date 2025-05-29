@@ -18,7 +18,8 @@ export function renderInvoice(invoice) {
 		"flex-col",
 		"overflow-hidden",
 		"opacity-50",
-		"duration-200"
+		"duration-200",
+		"border-primary"
 	);
 
 	invoiceCard.innerHTML = /*html*/ `
@@ -82,6 +83,7 @@ export function renderInvoice(invoice) {
 	emptySection?.classList.add("hidden");
 	setTimeout(() => {
 		invoiceCard.classList.replace("opacity-50", "opacity-100");
+		invoiceCard.classList.remove("border-primary");
 		resultContainer?.scrollIntoView({ behavior: "smooth" });
 	}, 500);
 

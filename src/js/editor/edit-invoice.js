@@ -10,6 +10,8 @@ export function editInvoice(invoice) {
 	invoiceDetail.classList.remove("hidden");
 	document.body.classList.add("overflow-hidden");
 
+	document.getElementById("invoice-detail-title").innerHTML = "ویرایش فاکتور";
+
 	document.getElementById("shop-name").value = invoice.shopName;
 	document.getElementById("tel").value = invoice.phone || "";
 	document.getElementById("discount").value = invoice.discount || "";

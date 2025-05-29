@@ -10,6 +10,7 @@ export default defineConfig({
 		rollupOptions: {
 			input: {
 				main: "/index.html",
+				contact: "/pages/contact.html",
 				about: "/pages/about.html",
 				catalogs: "/pages/catalogs.html",
 				education: "/pages/education.html",

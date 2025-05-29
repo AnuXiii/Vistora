@@ -40,6 +40,16 @@ export class Vheader extends HTMLElement {
                                 </li>
                                 <li role="listitem">
                                     <a
+                                        href="/pages/contact.html"
+                                        class="link"
+                                        title="ارسال نظر"
+                                        aria-label="ارسال نظر"
+                                        role="link"
+                                        >ارسال نظر</a
+                                    >
+                                </li>
+                                <li role="listitem">
+                                    <a
                                         href="/pages/education.html"
                                         class="link"
                                         title="آموزش"

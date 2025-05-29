@@ -74,20 +74,13 @@
 					class="absolute inset-0 bg-gradient-to-t from-blue-600 via-primary to-blue-900 z-[-1] blur-2xl opacity-10"></div>
 				<div class="cr mb-0">
 					<h1 class="mb-10 text-4xl font-bold font-dana-bold">لیست اقدامات</h1>
-					<header class="grid grid-cols-12 lg:grid-cols-4 gap-4">
+					<header class="grid grid-cols-12 lg:grid-cols-3 gap-4">
 						<button
 							id="clear-all-invoices"
-							class="hero-btn col-span-full lg:col-span-1"
+							class="hero-btn col-span-full lg:col-span-1 bg-primary outline-primary"
 							title="پاک کردن تمامی فاکتورها"
 							aria-label="پاک کردن تمامی فاکتورها">
 							<span class="text-nowrap">پاک کردن تمامی فاکتور ها</span>
-						</button>
-						<button
-							id="clear-yesterday-invoices"
-							class="hero-btn col-span-full lg:col-span-1"
-							title="پاک کردن فاکتورهای روز قبل"
-							aria-label="پاک کردن فاکتورهای روز قبل">
-							<span class="text-nowrap">پاک کردن فاکتور های روز قبل</span>
 						</button>
 						<button
 							id="calculate-sales"
@@ -96,16 +89,16 @@
 							aria-label="محاسبه فروش">
 							<span class="text-nowrap">محاسبه فروش</span>
 						</button>
-						<button
-							id="send-msg"
+						<a
+							href="/pages/contact.html"
 							class="hero-btn col-span-6 lg:col-span-1 bg-green-600 outline-green-600 hover:text-white"
-							title="ارسال پیام"
-							aria-label="ارسال پیام">
+							title="ارسال نظر"
+							aria-label="ارسال نظر">
 							<ion-icon
 								name="send-outline"
 								class="text-xl"></ion-icon>
-							<span class="text-nowrap">ارسال پیام</span>
-						</button>
+							<span class="text-nowrap">ارسال نظر</span>
+						</a>
 					</header>
 				</div>
 			</section>
