@@ -1,7 +1,8 @@
 export class Vheader extends HTMLElement {
 	connectedCallback() {
 		this.innerHTML = /*html*/ `
-            <header id="header" class="cr max-[480px]:mb-8">
+        <div class="header-container">
+            <header id="header" class="cr mb-0">
                 <div class="flex justify-between items-center">
                     <div class="flex justify-center items-center">
                         <a
@@ -16,7 +17,7 @@ export class Vheader extends HTMLElement {
                         <nav role="navigation">
                             <button
                                 id="openNav"
-                                class="flex justify-center items-center gap-2 text-4xl text-primary min-[580px]:hidden">
+                                class="flex justify-center items-center gap-2 text-4xl text-primary md:hidden">
                                 <ion-icon name="grid-outline"></ion-icon>
                             </button>
                             <ul
@@ -25,7 +26,7 @@ export class Vheader extends HTMLElement {
                                 role="list">
                                 <button
                                     id="closeNav"
-                                    class="justify-end items-center gap-2 text-4xl text-primary hidden max-[580px]:flex">
+                                    class="flex justify-end items-center gap-2 text-4xl text-primary md:hidden">
                                     <ion-icon name="close-outline"></ion-icon>
                                 </button>
                                 <li role="listitem">
@@ -83,6 +84,7 @@ export class Vheader extends HTMLElement {
                     </div>
                 </div>
             </header>
+        <div/>
         `;
 	}
 }
