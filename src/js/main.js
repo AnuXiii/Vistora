@@ -4,9 +4,9 @@ import { products } from "./data"; // Import product data from a local file
 import { showAlert, colors } from "./showAlert"; // Import alert utility functions
 import { Vheader } from "./components/header";
 import { Vfooter } from "./components/footer";
-import * as uiManager from "./uiManager";
+import { productsMenuController } from "./uiManager";
 import * as modalsController from "./modalsController"; // Import modal control functions
-import { imgStatusChecker, linkStatusChecker } from "./loadCheckers"; // Import functions to check image and link statuses
+import { linkStatusChecker } from "./loadCheckers"; // Import functions to check image and link statuses
 import * as installModal from "./installModal"; // Import installation modal functions
 import { dateElement, getNowDate } from "./getNowDate"; // Import date-related utilities
 import { invoiceData, date, shopNameInput, phoneInput, discountInput, addressInput } from "./invoiceDetailManager";
@@ -41,12 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Initialize the application when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-	uiManager.initProducts();
-	uiManager.productBoxCollapser();
-	uiManager.productsMenuController();
-	uiManager.Counter();
-	uiManager.counterValidator();
-	imgStatusChecker();
+	productsMenuController();
 
 	// Load stored invoices from localStorage
 	const storedInvoices = JSON.parse(localStorage.getItem("invoices") || "[]");

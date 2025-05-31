@@ -86,7 +86,7 @@
 
 	/* HTML and Body Styles */
 	html {
-		@apply scroll-smooth;
+		@apply scroll-smooth scroll-p-10;
 	}
 
 	body {

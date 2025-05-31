@@ -1,54 +1,125 @@
 import { products } from "./data";
-import { productCategories } from "./main";
 import { formatPrice } from "./formatPrice";
-export let productListData = ""; // Stores the currently selected product category
+import { imgStatusChecker } from "./loadCheckers";
 
-// Function to handle product category menu interactions
-export function productsMenuController() {
-	productCategories.forEach((item) => {
-		// Automatically click the first category if it exists
-		productCategories[0] ? productCategories[0].click() : null;
+// find product menu items container & product lists contaienr
+const productMenu = document.getElementById("product-menu");
+const productsList = document.querySelector(".product-lists");
 
-		// Add click event listener to each category
+// Function to handle collapsing and expanding product boxes
+function viewProduct() {
+	const productItem = document.querySelectorAll(".product-item");
+
+	productItem?.forEach((item) => {
 		item.addEventListener("click", () => {
-			// Remove the 'active' class from the previously active category
+			const productInfo = item.querySelector(".product-info");
 
-			if (item.parentNode.querySelector(".active")) {
-				item.parentNode.querySelector(".active").classList.remove("active");
+			if (productInfo.classList.contains("flex")) {
+				productInfo.classList.replace("flex", "hidden");
+				item.classList.remove("bg-blue-950");
+				return;
 			}
-			// Set the current category and add the 'active' class
-			productListData = item.dataset.category;
-			item.classList.add("active");
 
-			// Show or hide product lists based on the selected category
-			const listCat = document.querySelectorAll("[data-hashtag]");
-			listCat.forEach((list) => {
-				list.classList.replace("flex", "hidden");
-				list.classList.remove("fade-in");
-
-				if (productListData == list.dataset.hashtag) {
-					list.classList.replace("hidden", "flex");
-					list.classList.add("fade-in");
-					document.getElementById("top").scrollIntoView({ behavior: "smooth" });
-				}
+			const openItems = productsList.querySelectorAll(".product-info.flex");
+			openItems.forEach((openItem) => {
+				openItem.classList.replace("flex", "hidden");
+				openItem.closest(".product-item").classList.remove("bg-blue-950");
 			});
+
+			productInfo.classList.replace("hidden", "flex");
+			item.classList.add("bg-blue-950");
+			productInfo.querySelector("input").focus();
 		});
 	});
 }
 
+// Event listener for increasing or decreasing product quantity
+function Counter() {
+	productsList?.addEventListener("click", (e) => {
+		const target = e.target.closest(".increase, .reducer");
+		if (!target) return;
+
+		const inputField = target.closest(".count-action").querySelector("input");
+		let value = parseInt(inputField.value) || 0;
+
+		if (target.classList.contains("increase")) {
+			value++;
+		} else if (target.classList.contains("reducer") && value > 0) {
+			value--;
+		}
+
+		if (target.classList.contains("reducer")) {
+			if (value == 0) {
+				value = "";
+			}
+		}
+
+		inputField.value = value;
+	});
+}
+
+// Event listener to validate number inputs in the product list
+function counterValidator() {
+	productsList?.querySelectorAll("input").forEach((item) => {
+		if (item.classList.contains("number-input")) {
+			item.addEventListener("input", () => {
+				if (isNaN(item.value)) {
+					item.value = "";
+				}
+				if (item.value < 0 || item.value == 0) {
+					item.value = "";
+				}
+				if (item.value.length > 5) {
+					item.classList.add("text-sm");
+				} else {
+					item.classList.remove("text-sm");
+				}
+			});
+		}
+	});
+}
+
+// Function to handle product category menu interactions
+export function productsMenuController() {
+	if (productMenu) {
+		productMenu.querySelectorAll("li")[0].classList.add("active");
+		initProducts("milk");
+
+		productMenu.addEventListener("click", (e) => {
+			const validTarget = e.target.closest("li");
+
+			if (validTarget) {
+				if (productMenu.querySelector(".active")) {
+					productMenu.querySelector(".active").classList.remove("active");
+				}
+
+				validTarget.classList.add("active");
+
+				const category = validTarget.dataset.category;
+
+				initProducts(category);
+			}
+		});
+	}
+}
+
 // Function to initialize and append products to the product list container
-export function initProducts() {
-	products.forEach((item, index) => {
+export function initProducts(category) {
+	productsList.innerHTML = "";
+	const filtredItems = products.filter((item) => item.category === category);
+
+	filtredItems.forEach((item, index) => {
 		const li = document.createElement("li");
 		li.classList.add(
 			"product-item",
-			"hidden",
+			"flex",
 			"flex-col",
 			"justify-between",
 			"text-white",
 			"w-full",
 			"bg-black",
-			"h-fit"
+			"h-fit",
+			"fade-in"
 		);
 		li.setAttribute("data-hashtag", `${item.category}`);
 		li.innerHTML = /*html*/ `
@@ -98,77 +169,11 @@ export function initProducts() {
         `;
 		productsList?.appendChild(li);
 	});
-}
 
-// Function to handle collapsing and expanding product boxes
-export const productsList = document.querySelector(".product-lists");
-export function productBoxCollapser() {
-	const productItem = document.querySelectorAll(".product-item");
-	const product = document.querySelectorAll("[data-hashtag] header");
+	viewProduct();
+	imgStatusChecker();
+	Counter();
+	counterValidator();
 
-	productItem.forEach((item) => {
-		item.addEventListener("click", () => {
-			if (productsList.querySelector(".bg-blue-950")) {
-				productsList.querySelector(".bg-blue-950").classList.replace("bg-blue-950", "bg-black");
-			}
-			item.classList.add("bg-blue-950");
-		});
-	});
-
-	product.forEach((item) => {
-		item.addEventListener("click", () => {
-			if (productsList.querySelector(".product-info.flex")) {
-				productsList.querySelector(".product-info.flex").classList.replace("flex", "hidden");
-			}
-			item.nextElementSibling.classList.replace("hidden", "flex");
-			item.nextElementSibling.querySelector("input").focus();
-		});
-	});
-}
-
-// Event listener for increasing or decreasing product quantity
-export function Counter() {
-	productsList?.addEventListener("click", (e) => {
-		const target = e.target.closest(".increase, .reducer");
-		if (!target) return;
-
-		const inputField = target.closest(".count-action").querySelector("input");
-		let value = parseInt(inputField.value) || 0;
-
-		if (target.classList.contains("increase")) {
-			value++;
-		} else if (target.classList.contains("reducer") && value > 0) {
-			value--;
-		}
-
-		if (target.classList.contains("reducer")) {
-			if (value == 0) {
-				value = "";
-			}
-		}
-
-		inputField.value = value;
-	});
-}
-
-// Event listener to validate number inputs in the product list
-
-export function counterValidator() {
-	productsList?.querySelectorAll("input").forEach((item) => {
-		if (item.classList.contains("number-input")) {
-			item.addEventListener("input", () => {
-				if (isNaN(item.value)) {
-					item.value = "";
-				}
-				if (item.value < 0 || item.value == 0) {
-					item.value = "";
-				}
-				if (item.value.length > 5) {
-					item.classList.add("text-sm");
-				} else {
-					item.classList.remove("text-sm");
-				}
-			});
-		}
-	});
+	document.getElementById("top").scrollIntoView({ behavior: "smooth" });
 }
