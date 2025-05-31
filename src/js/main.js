@@ -4,9 +4,9 @@ import { products } from "./data"; // Import product data from a local file
 import { showAlert, colors } from "./showAlert"; // Import alert utility functions
 import { Vheader } from "./components/header";
 import { Vfooter } from "./components/footer";
-import { productsMenuController } from "./uiManager";
+import * as uiManager from "./uiManager";
 import * as modalsController from "./modalsController"; // Import modal control functions
-import { linkStatusChecker } from "./loadCheckers"; // Import functions to check image and link statuses
+import { imgStatusChecker, linkStatusChecker } from "./loadCheckers"; // Import functions to check image and link statuses
 import * as installModal from "./installModal"; // Import installation modal functions
 import { dateElement, getNowDate } from "./getNowDate"; // Import date-related utilities
 import { invoiceData, date, shopNameInput, phoneInput, discountInput, addressInput } from "./invoiceDetailManager";
@@ -16,10 +16,13 @@ import { invoiceHTMLGenerator } from "./invoiceHTMLGenerator";
 import { downloadInvoiceAsImage } from "./downloadInvoiceAsImage";
 import { renderInvoice } from "./renderInvoice";
 
+// init clear All invoice & calculate all Sales
 import { clearInvoices, calculateSales } from "./headerActions";
 
-//
+// init changes Log modal
 import { changeModalLoader } from "./changeLog/changeModal";
+
+// init edit Invoice Manager
 import { editInvoice } from "./editor/edit-invoice";
 
 // Select DOM elements for product categories, product lists, and other UI components
@@ -41,7 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Initialize the application when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-	productsMenuController();
+	uiManager.initProducts();
+	uiManager.productBoxCollapser();
+	uiManager.Counter();
+	uiManager.counterValidator();
+	uiManager.productsMenuController();
+	imgStatusChecker();
 
 	// Load stored invoices from localStorage
 	const storedInvoices = JSON.parse(localStorage.getItem("invoices") || "[]");

@@ -1,125 +1,54 @@
 import { products } from "./data";
+import { productCategories } from "./main";
 import { formatPrice } from "./formatPrice";
-import { imgStatusChecker } from "./loadCheckers";
-
-// find product menu items container & product lists contaienr
-const productMenu = document.getElementById("product-menu");
-const productsList = document.querySelector(".product-lists");
-
-// Function to handle collapsing and expanding product boxes
-function viewProduct() {
-	const productItem = document.querySelectorAll(".product-item");
-
-	productItem?.forEach((item) => {
-		item.addEventListener("click", () => {
-			const productInfo = item.querySelector(".product-info");
-
-			if (productInfo.classList.contains("flex")) {
-				productInfo.classList.replace("flex", "hidden");
-				item.classList.remove("bg-blue-950");
-				return;
-			}
-
-			const openItems = productsList.querySelectorAll(".product-info.flex");
-			openItems.forEach((openItem) => {
-				openItem.classList.replace("flex", "hidden");
-				openItem.closest(".product-item").classList.remove("bg-blue-950");
-			});
-
-			productInfo.classList.replace("hidden", "flex");
-			item.classList.add("bg-blue-950");
-			productInfo.querySelector("input").focus();
-		});
-	});
-}
-
-// Event listener for increasing or decreasing product quantity
-function Counter() {
-	productsList?.addEventListener("click", (e) => {
-		const target = e.target.closest(".increase, .reducer");
-		if (!target) return;
-
-		const inputField = target.closest(".count-action").querySelector("input");
-		let value = parseInt(inputField.value) || 0;
-
-		if (target.classList.contains("increase")) {
-			value++;
-		} else if (target.classList.contains("reducer") && value > 0) {
-			value--;
-		}
-
-		if (target.classList.contains("reducer")) {
-			if (value == 0) {
-				value = "";
-			}
-		}
-
-		inputField.value = value;
-	});
-}
-
-// Event listener to validate number inputs in the product list
-function counterValidator() {
-	productsList?.querySelectorAll("input").forEach((item) => {
-		if (item.classList.contains("number-input")) {
-			item.addEventListener("input", () => {
-				if (isNaN(item.value)) {
-					item.value = "";
-				}
-				if (item.value < 0 || item.value == 0) {
-					item.value = "";
-				}
-				if (item.value.length > 5) {
-					item.classList.add("text-sm");
-				} else {
-					item.classList.remove("text-sm");
-				}
-			});
-		}
-	});
-}
+let productListData = ""; // Stores the currently selected product category
 
 // Function to handle product category menu interactions
 export function productsMenuController() {
-	if (productMenu) {
-		productMenu.querySelectorAll("li")[0].classList.add("active");
-		initProducts("milk");
+	productCategories.forEach((item) => {
+		// Automatically click the first category if it exists
+		productCategories[0] ? productCategories[0].click() : null;
 
-		productMenu.addEventListener("click", (e) => {
-			const validTarget = e.target.closest("li");
+		// Add click event listener to each category
+		item.addEventListener("click", () => {
+			// Remove the 'active' class from the previously active category
 
-			if (validTarget) {
-				if (productMenu.querySelector(".active")) {
-					productMenu.querySelector(".active").classList.remove("active");
-				}
-
-				validTarget.classList.add("active");
-
-				const category = validTarget.dataset.category;
-
-				initProducts(category);
+			if (item.parentNode.querySelector(".active")) {
+				item.parentNode.querySelector(".active").classList.remove("active");
 			}
+			// Set the current category and add the 'active' class
+			productListData = item.dataset.category;
+			item.classList.add("active");
+
+			// Show or hide product lists based on the selected category
+			const listCat = document.querySelectorAll("[data-hashtag]");
+			listCat.forEach((list) => {
+				list.classList.replace("flex", "hidden");
+				list.classList.remove("fade-in");
+
+				if (productListData == list.dataset.hashtag) {
+					list.classList.replace("hidden", "flex");
+					list.classList.add("fade-in");
+					document.getElementById("top").scrollIntoView({ behavior: "smooth" });
+				}
+			});
 		});
-	}
+	});
 }
 
 // Function to initialize and append products to the product list container
-export function initProducts(category) {
-	productsList.innerHTML = "";
-	const filtredItems = products.filter((item) => item.category === category);
-
-	filtredItems.forEach((item, index) => {
+export function initProducts() {
+	products.forEach((item, index) => {
 		const li = document.createElement("li");
 		li.classList.add(
 			"product-item",
-			"flex",
+			"hidden",
 			"flex-col",
 			"justify-between",
 			"text-white",
 			"w-full",
 			"bg-black",
-			"h-fit",
-			"fade-in"
+			"h-fit"
 		);
 		li.setAttribute("data-hashtag", `${item.category}`);
 		li.innerHTML = /*html*/ `
@@ -169,11 +98,76 @@ export function initProducts(category) {
         `;
 		productsList?.appendChild(li);
 	});
+}
 
-	viewProduct();
-	imgStatusChecker();
-	Counter();
-	counterValidator();
+// Function to handle collapsing and expanding product boxes
+export const productsList = document.querySelector(".product-lists");
+export function productBoxCollapser() {
+	const productItem = document.querySelectorAll(".product-item");
+	const product = document.querySelectorAll("[data-hashtag] header");
 
-	document.getElementById("top").scrollIntoView({ behavior: "smooth" });
+	productItem.forEach((item) => {
+		item.addEventListener("click", () => {
+			if (productsList.querySelector(".bg-blue-950")) {
+				productsList.querySelector(".bg-blue-950").classList.replace("bg-blue-950", "bg-black");
+			}
+			item.classList.add("bg-blue-950");
+		});
+	});
+
+	product.forEach((item) => {
+		item.addEventListener("click", () => {
+			if (productsList.querySelector(".product-info.flex")) {
+				productsList.querySelector(".product-info.flex").classList.replace("flex", "hidden");
+			}
+			item.nextElementSibling.classList.replace("hidden", "flex");
+			item.nextElementSibling.querySelector("input").focus();
+		});
+	});
+}
+
+// Event listener for increasing or decreasing product quantity
+export function Counter() {
+	productsList?.addEventListener("click", (e) => {
+		const target = e.target.closest(".increase, .reducer");
+		if (!target) return;
+
+		const inputField = target.closest(".count-action").querySelector("input");
+		let value = parseInt(inputField.value) || 0;
+
+		if (target.classList.contains("increase")) {
+			value++;
+		} else if (target.classList.contains("reducer") && value > 0) {
+			value--;
+		}
+
+		if (target.classList.contains("reducer")) {
+			if (value == 0) {
+				value = "";
+			}
+		}
+
+		inputField.value = value;
+	});
+}
+
+// Event listener to validate number inputs in the product list
+export function counterValidator() {
+	productsList?.querySelectorAll("input").forEach((item) => {
+		if (item.classList.contains("number-input")) {
+			item.addEventListener("input", () => {
+				if (isNaN(item.value)) {
+					item.value = "";
+				}
+				if (item.value < 0 || item.value == 0) {
+					item.value = "";
+				}
+				if (item.value.length > 5) {
+					item.classList.add("text-sm");
+				} else {
+					item.classList.remove("text-sm");
+				}
+			});
+		}
+	});
 }
