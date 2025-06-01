@@ -54,7 +54,7 @@ export function initProducts() {
 		li.innerHTML = /*html*/ `
 							<header class="cursor-pointer py-6 px-4 flex justify-between items-center select-none">
 								<span class="text-xs product-name">${item.name}</span>
-							<ion-icon name="ellipsis-vertical-outline" class="text-white"></ion-icon>
+								<ion-icon name="add-outline"></ion-icon>
 							</header>
 							<div class="p-4 pb-6 product-info flex-col gap-6 hidden">
 								<div class="product-img relative rounded-md bg-primary/20 bg-[url(/images/product-bg.webp)] bg-repeat-round bg-contain">

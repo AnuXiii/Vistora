@@ -93,6 +93,10 @@
 		@apply font-dana text-base bg-white text-black transition-colors duration-200;
 	}
 
+	#app {
+		@apply min-h-screen;
+	}
+
 	/* Logo Styles */
 	.logo {
 		@apply relative font-extralight duration-200 bg-primary bg-gradient-to-tr from-primary to-black w-24 h-12;
@@ -108,7 +112,7 @@
 @layer components {
 	/* Container */
 	.cr {
-		@apply max-w-7xl p-2 md:p-4 mx-auto mb-16;
+		@apply max-w-7xl p-4 mx-auto mb-16;
 	}
 
 	/* Link Styles */
@@ -146,7 +150,7 @@
 	}
 
 	.hero-btn {
-		@apply text-white cursor-pointer flex flex-1 justify-center items-center gap-2;
+		@apply relative text-white cursor-pointer flex flex-1 justify-center items-center gap-2;
 		@apply font-semibold text-base md:text-lg;
 		@apply outline-2 outline-solid border-2 border-solid border-white;
 		@apply px-6 py-2 rounded-lg ease-in-out duration-200;
@@ -228,7 +232,7 @@
 
 /* Toast Styles */
 .toastify {
-	@apply max-w-[90%] text-center;
+	@apply max-w-[90%] text-center rounded-lg;
 }
 
 /* main modal component styles */
@@ -298,10 +302,10 @@
 
 	&::after,
 	&::before {
-		@apply content-[""] absolute inset-0 bg-primary rounded-lg;
+		@apply content-[""] absolute inset-0 bg-primary rounded-lg z-1;
 	}
 
 	&::after {
-		@apply flex justify-center items-center m-auto w-9 h-9 rounded-full border-2 border-solid border-white border-l-transparent animate-spin;
+		@apply flex justify-center items-center m-auto w-8 h-8 rounded-full border-2 border-solid border-white border-l-transparent animate-spin;
 	}
 }

@@ -63,28 +63,18 @@
 			<v-header></v-header>
 
 			<main class="cr">
+				<header class="flex flex-col justify-center items-center gap-4">
+					<h1 class="text-center text-3xl font-dana-bold font-bold max-[991px]:text-2xl">کاتالوگ محصولات طراوت</h1>
+					<p class="text-center text-sm text-black/70">برای مشاهده لیست بر روی باکس مورد نظر ضربه بزنید</p>
+				</header>
+			</main>
+
+			<main class="cr">
 				<!-- Catalog Grid -->
 				<section
 					class="cat-box-container grid grid-cols-5 gap-4 justify-between text-center items-center w-full mx-auto max-[991px]:grid-cols-3 max-[480px]:grid-cols-2"
 					aria-label="دسته‌بندی محصولات">
 					<!-- Catalog Items -->
-					<article
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
-						data-catalog="yogurt">
-						<button
-							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
-							aria-label="نمایش محصولات ماست">
-							<img
-								src="/images/icons/yogurt.svg"
-								alt="ماست"
-								width="80"
-								height="80"
-								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
-							<span class="font-medium">ماست</span>
-						</button>
-					</article>
-
 					<article
 						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="milk">
@@ -99,23 +89,6 @@
 								loading="lazy"
 								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
 							<span class="font-medium">شیر</span>
-						</button>
-					</article>
-
-					<article
-						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
-						data-catalog="buttermilk">
-						<button
-							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
-							aria-label="نمایش محصولات دوغ">
-							<img
-								src="/images/icons/buttermilk.svg"
-								alt="دوغ"
-								width="80"
-								height="80"
-								loading="lazy"
-								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
-							<span class="font-medium">دوغ</span>
 						</button>
 					</article>
 
@@ -138,6 +111,23 @@
 
 					<article
 						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
+						data-catalog="buttermilk">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات دوغ">
+							<img
+								src="/images/icons/buttermilk.svg"
+								alt="دوغ"
+								width="80"
+								height="80"
+								loading="lazy"
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">دوغ</span>
+						</button>
+					</article>
+
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
 						data-catalog="f-yogurt">
 						<button
 							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
@@ -150,6 +140,23 @@
 								loading="lazy"
 								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
 							<span class="font-medium">ماست طعم دار</span>
+						</button>
+					</article>
+
+					<article
+						class="cat-box bg-gray-100 border border-solid border-black/10 p-4 duration-200 hover:bg-primary hover:text-white group transition-all hover:shadow-lg hover:scale-105"
+						data-catalog="yogurt">
+						<button
+							class="flex flex-col gap-3 justify-center items-center w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+							aria-label="نمایش محصولات ماست">
+							<img
+								src="/images/icons/yogurt.svg"
+								alt="ماست"
+								width="80"
+								height="80"
+								loading="lazy"
+								class="duration-200 w-20 h-20 group-hover:brightness-[20] transition-all" />
+							<span class="font-medium">ماست</span>
 						</button>
 					</article>
 
@@ -237,57 +244,8 @@
 					</div>
 				</section>
 			</main>
-
-			<!-- Mission Statement -->
-			<section
-				class="cr my-8 bg-gray-50"
-				aria-label="بیانیه ماموریت">
-				<h1 class="font-dana-bold font-bold text-3xl mb-8 text-gray-900">بیانیه ماموریت</h1>
-
-				<div class="space-y-8">
-					<!-- Mission -->
-					<div class="bg-white p-6">
-						<h2 class="font-dana-bold text-xl mb-4 text-primary">ماموریت</h2>
-						<p class="leading-8 text-justify text-gray-700">
-							تامین سلامت غذایی جامعه و ارتقای سطح توقع شهروندان ایرانی از محصولات لبنی طراوت برآن است تا در مسیر پیش رو
-							سلامت غذایی جامعه را با روش‌های زیر تامین نماید:
-						</p>
-						<ul class="list-disc list-inside mt-4 space-y-3 text-gray-700">
-							<li>
-								تولید محصولات لبنی سالم با بهره‌گیری از مواد اولیه سالم و طبیعی و بکارگیری تجهیزات روز دنیا برای کسب
-								حداکثر کیفیت
-							</li>
-							<li>
-								افزایش مصرف سرانه لبنیات در بین شهروندان ایرانی از طریق اطلاع‌رسانی درست، علمی و همه‌جانبه و همچنین
-								تنوع‌بخشی به محصولات، مبتنی بر سلایق مصرف‌کنندگان
-							</li>
-						</ul>
-						<p class="leading-8 text-justify mt-4 text-gray-700">
-							بدیهی است پس از انجام ماموریت فوق و ارائه اطلاعات لازم در رابطه با شناخت محصولات لبنی با کیفیت، سطح توقع
-							شهروندان از محصولات لبنی ارتقا خواهد یافت.
-						</p>
-					</div>
-
-					<!-- Vision -->
-					<div class="bg-white p-6">
-						<h2 class="font-dana-bold text-xl mb-4 text-primary">چشم‌انداز</h2>
-						<p class="leading-8 text-justify text-gray-700">
-							قرار گرفتن در بین تولیدکنندگان برتر داخلی و حضور در بازارهای منطقه
-						</p>
-					</div>
-
-					<!-- Values -->
-					<div class="bg-white p-6">
-						<h2 class="font-dana-bold text-xl mb-4 text-primary">ارزش‌ها</h2>
-						<p class="leading-8 text-justify text-gray-700">
-							ارتقای سطح سلامت جامعه و رعایت موازین احترام متقابل در برقراری رابطه با مصرف‌کنندگان در ردیف مهمترین
-							دغدغه‌های طراوت قرار دارد.
-						</p>
-					</div>
-				</div>
-			</section>
 		</div>
-
+		<!--  -->
 		<v-footer></v-footer>
 
 		<!-- Scripts -->

@@ -1,3 +1,5 @@
+import { links, logo } from "../constants/index";
+
 export class Vheader extends HTMLElement {
 	connectedCallback() {
 		this.innerHTML = /*html*/ `
@@ -6,9 +8,9 @@ export class Vheader extends HTMLElement {
                 <div class="flex justify-between items-center">
                     <div class="flex justify-center items-center">
                         <a
-                            href="/"
-                            title="صفحه اصلی"
-                            aria-label="صفحه اصلی"
+                            href="${logo.path}"
+                            title="${logo.label}"
+                            aria-label="${logo.label}"
                             role="link"
                             class="logo">
                         </a>
@@ -29,62 +31,27 @@ export class Vheader extends HTMLElement {
                                     class="flex justify-end items-center gap-2 text-4xl text-primary md:hidden">
                                     <ion-icon name="close-outline"></ion-icon>
                                 </button>
+                                ${links
+																	.map(
+																		(link) => `
                                 <li role="listitem">
                                     <a
-                                        href="/"
+                                        href="${link.path}"
                                         class="link"
-                                        title="صفحه اصلی"
-                                        aria-label="صفحه اصلی"
+                                        title="${link.label}"
+                                        aria-label="${link.label}"
                                         role="link"
-                                        >صفحه اصلی</a
+                                        >${link.label}</a
                                     >
                                 </li>
-                                <li role="listitem">
-                                    <a
-                                        href="/pages/contact.html"
-                                        class="link"
-                                        title="ارسال نظر"
-                                        aria-label="ارسال نظر"
-                                        role="link"
-                                        >ارسال نظر</a
-                                    >
-                                </li>
-                                <li role="listitem">
-                                    <a
-                                        href="/pages/education.html"
-                                        class="link"
-                                        title="آموزش"
-                                        aria-label="آموزش"
-                                        role="link"
-                                        >آموزش</a
-                                    >
-                                </li>
-                                <li role="listitem">
-                                    <a
-                                        href="/pages/catalogs.html"
-                                        class="link"
-                                        title="کاتالوگ"
-                                        aria-label="کاتالوگ"
-                                        role="link"
-                                        >کاتالوگ</a
-                                    >
-                                </li>
-                                <li role="listitem">
-                                    <a
-                                        href="/pages/about.html"
-                                        class="link"
-                                        title="درباره"
-                                        aria-label="درباره"
-                                        role="link"
-                                        >درباره ما</a
-                                    >
-                                </li>
+                                    `
+																	)
+																	.join("")}
                             </ul>
                         </nav>
                     </div>
                 </div>
             </header>
-        <div/>
         `;
 	}
 }

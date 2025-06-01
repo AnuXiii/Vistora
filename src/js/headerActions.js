@@ -13,6 +13,11 @@ clearAllInvoicesBtn?.addEventListener("click", clearInvoices);
 
 function clearInvoices() {
 	function goAction() {
+		if (!localStorage.getItem("invoices") || localStorage.getItem("invoices").length === 0) {
+			showAlert("هیچ فاکتوری ثبت نشده است", colors.error);
+			return;
+		}
+
 		localStorage.removeItem("invoices");
 		resultContainer.innerHTML = "";
 		emptySection?.classList.remove("hidden");

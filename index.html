@@ -8,7 +8,7 @@
 		<link
 			rel="icon"
 			type="image/svg+xml"
-			href="images/logo.png" />
+			href="/images/logo.png" />
 		<link
 			rel="manifest"
 			href="/manifest.json" />
@@ -48,7 +48,7 @@
 			property="og:image"
 			content="/images/logo.png" />
 
-		<!-- Title and Favicon -->
+		<!-- Title -->
 		<title>Vistora - فاکتور ساز آنلاین</title>
 
 		<!-- External Resources -->
@@ -70,7 +70,7 @@
 			<v-header></v-header>
 			<!--  -->
 			<section class="cr">
-				<h1 class="mb-10 text-4xl font-bold font-dana-bold">لیست اقدامات</h1>
+				<h1 class="mb-10 text-3xl font-bold font-dana-bold">لیست اقدامات</h1>
 				<header class="grid gap-4 grid-cols-2 md:grid-cols-3">
 					<button
 						id="clear-all-invoices"
@@ -117,7 +117,7 @@
 				</section>
 				<!--  -->
 				<section
-					class="result-container grid grid-cols-2 gap-8 justify-center items-center max-[991px]:grid-cols-1 pb-30"
+					class="result-container grid grid-cols-2 gap-8 justify-center items-center max-[991px]:grid-cols-1 pb-20"
 					aria-label="نتایج جستجو"></section>
 				<!--  -->
 			</main>
@@ -140,6 +140,13 @@
 			aria-labelledby="invoice-detail-title"
 			aria-modal="true">
 			<header class="flex justify-between items-center mb-8">
+				<div class="flex gap-4">
+					<h1
+						id="invoice-detail-title"
+						class="text-3xl mt-2 font-dana-bold font-bold min-[991px]:hidden">
+						مشخصات فاکتور
+					</h1>
+				</div>
 				<div class="flex -mx-2">
 					<button
 						title="بستن"
@@ -151,17 +158,10 @@
 							aria-hidden="true"></ion-icon>
 					</button>
 				</div>
-				<div class="flex gap-4">
-					<h1
-						id="invoice-detail-title"
-						class="text-2xl font-dana-bold font-bold min-[991px]:hidden">
-						مشخصات فاکتور
-					</h1>
-				</div>
 			</header>
 			<!--  -->
 			<div class="mt-12">
-				<h1 class="text-2xl font-dana-bold font-bold text-center mb-8 max-[991px]:hidden">مشخصات فاکتور</h1>
+				<h1 class="text-3xl font-dana-bold font-bold text-center mb-8 max-[991px]:hidden">مشخصات فاکتور</h1>
 				<form
 					class="grid grid-cols-1 gap-4 pb-30 min-[991px]:grid-cols-2 max-w-7xl mx-auto"
 					aria-label="فرم مشخصات فاکتور">
@@ -282,12 +282,12 @@
 			<header class="flex items-center divide-x-2 divide-solid divide-white border-b-2 border-solid border-b-black/10">
 				<div class="flex">
 					<button
-						title="بستن"
-						id="close-product-list"
-						class="bg-primary flex justify-center items-center text-white text-2xl p-4 hover:bg-primary/90 transition-colors duration-200"
-						aria-label="بستن">
+						title="بازگشت به عقب"
+						id="back-button"
+						class="bg-blue-800 w-full flex justify-center items-center text-white text-2xl p-4 hover:bg-blue-900 transition-colors duration-200"
+						aria-label="بازگشت به عقب">
 						<ion-icon
-							name="close-outline"
+							name="arrow-back-outline"
 							aria-hidden="true"></ion-icon>
 					</button>
 				</div>
@@ -304,12 +304,12 @@
 				</div>
 				<div class="flex">
 					<button
-						title="بازگشت به عقب"
-						id="back-button"
-						class="bg-blue-800 w-full flex justify-center items-center text-white text-2xl p-4 hover:bg-blue-900 transition-colors duration-200"
-						aria-label="بازگشت به عقب">
+						title="بستن"
+						id="close-product-list"
+						class="bg-primary flex justify-center items-center text-white text-2xl p-4 hover:bg-primary/90 transition-colors duration-200"
+						aria-label="بستن">
 						<ion-icon
-							name="arrow-forward-outline"
+							name="close-outline"
 							aria-hidden="true"></ion-icon>
 					</button>
 				</div>

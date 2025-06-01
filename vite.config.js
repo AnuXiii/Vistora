@@ -11,7 +11,7 @@ export default defineConfig({
 			input: {
 				main: "/index.html",
 				contact: "/pages/contact.html",
-				about: "/pages/about.html",
+				faq: "/pages/faq.html",
 				catalogs: "/pages/catalogs.html",
 				education: "/pages/education.html",
 			},
