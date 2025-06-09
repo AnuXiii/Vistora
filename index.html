@@ -71,7 +71,7 @@
 			<!--  -->
 			<section class="cr">
 				<h1 class="mb-10 text-3xl font-bold font-dana-bold">لیست اقدامات</h1>
-				<header class="grid gap-4 grid-cols-2 md:grid-cols-3">
+				<header class="grid gap-4 grid-cols-2 lg:grid-cols-4">
 					<button
 						id="clear-all-invoices"
 						class="hero-btn max-md:col-span-2 bg-red-100 text-primary outline-primary hover:bg-primary hover:text-white"
@@ -88,6 +88,13 @@
 						title="محاسبه فروش"
 						aria-label="محاسبه فروش">
 						<span class="text-nowrap">محاسبه فروش</span>
+					</button>
+					<button
+						id="installBtn"
+						class="hero-btn max-md:col-span-2 max-md:order-1 bg-primary text-white outline-primary hover:bg-primary/90 hover:text-white"
+						title="نصب ویزتورا"
+						aria-label="نصب ویزتورا">
+						<span class="text-nowrap">نصب ویزتورا</span>
 					</button>
 					<a
 						href="/pages/contact.html"
@@ -391,45 +398,6 @@
 					<ul
 						class="product-lists flex flex-col justify-center items-center divide-y-1 divide-solid divide-white/50"
 						role="list"></ul>
-				</div>
-			</div>
-		</div>
-		<!--  -->
-		<div
-			id="installModal"
-			class="fixed h-[90px] top-[-4%] right-0 w-full border-b border-solid border-black/10 bg-gray-300 bg-gradient-to-br from-gray-300 to-white hidden justify-center items-center opacity-0 z-99"
-			role="dialog"
-			aria-labelledby="install-modal-title"
-			aria-modal="true">
-			<div class="flex justify-between items-center w-full mb-0 cr">
-				<header class="flex items-center gap-2">
-					<div class="text-3xl text-primary flex justify-center items-center max-[480px]:hidden">
-						<ion-icon
-							name="phone-portrait-outline"
-							aria-hidden="true"></ion-icon>
-					</div>
-					<div class="flex flex-col gap-1.5">
-						<h2
-							id="install-modal-title"
-							class="font-dana-bold font-bold">
-							<span class="max-[480px]:hidden">وب</span> اپلیکیشن ویزتورا
-						</h2>
-						<p class="text-sm text-black/80">هم اکنون نصب کنید</p>
-					</div>
-				</header>
-				<div class="flex items-center gap-2">
-					<button
-						id="cancelInstall"
-						class="cursor-pointer bg-gray-300 border border-solid border-black/30 w-20 h-10 rounded-2xl hover:bg-gray-400 transition-colors duration-200"
-						aria-label="بعدا نصب کن">
-						بعدا
-					</button>
-					<button
-						id="installBtn"
-						class="cursor-pointer bg-primary text-white w-20 h-10 rounded-2xl hover:bg-primary/90 transition-colors duration-200"
-						aria-label="نصب اپلیکیشن">
-						نصب
-					</button>
 				</div>
 			</div>
 		</div>

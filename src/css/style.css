@@ -90,7 +90,7 @@
 	}
 
 	body {
-		@apply font-dana text-base bg-white text-black transition-colors duration-200;
+		@apply font-dana text-base bg-white text-black transition-colors duration-200 overscroll-contain;
 	}
 
 	#app {

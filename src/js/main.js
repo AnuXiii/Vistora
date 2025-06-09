@@ -7,7 +7,7 @@ import { Vfooter } from "./components/footer";
 import * as uiManager from "./uiManager";
 import * as modalsController from "./modalsController"; // Import modal control functions
 import { imgStatusChecker, linkStatusChecker } from "./loadCheckers"; // Import functions to check image and link statuses
-import * as installModal from "./installModal"; // Import installation modal functions
+import installPWA from "./installModal"; // Import installation modal functions
 import { dateElement, getNowDate } from "./getNowDate"; // Import date-related utilities
 import { invoiceData, date, shopNameInput, phoneInput, discountInput, addressInput } from "./invoiceDetailManager";
 import { backToInvoiceDetails } from "./backToDetail";
