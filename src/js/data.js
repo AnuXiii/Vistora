@@ -79,22 +79,22 @@ export const products = [
 	{
 		category: "cream",
 		name: "خامه صبحانه 100 گرمی",
-		factory_price: 235000,
-		sell_price: 280000,
+		factory_price: 290000,
+		sell_price: 340000,
 		img: "https://taravatdairy.com/assets/img/product/%D8%AE%D8%A7%D9%85%D9%87%20%D8%B5%D8%A8%D8%AD%D8%A7%D9%86%D9%87%20100%20%DA%AF%D8%B1%D9%85%DB%8C%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
 	},
 	{
 		category: "cream",
 		name: "خامه عسلی 100 گرمی",
-		factory_price: 240000,
-		sell_price: 290000,
+		factory_price: 290000,
+		sell_price: 340000,
 		img: "https://taravatdairy.com/assets/img/product/%D8%AE%D8%A7%D9%85%D9%87%20%D8%B9%D8%B3%D9%84%DB%8C%20100%20%DA%AF%D8%B1%D9%85%DB%8C%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
 	},
 	{
 		category: "cream",
 		name: "خامه شکلاتی 100 گرمی",
-		factory_price: 240000,
-		sell_price: 290000,
+		factory_price: 290000,
+		sell_price: 340000,
 		img: "https://taravatdairy.com/assets/img/product/%D8%AE%D8%A7%D9%85%D9%87%20%DA%A9%D8%A7%DA%A9%D8%A7%D8%A6%D9%88%DB%8C%DB%8C%20100%20%DA%AF%D8%B1%D9%85%DB%8C%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
 	},
 	{
@@ -149,8 +149,8 @@ export const products = [
 	{
 		category: "cheese",
 		name: "پنیر خامه ای 100 گرمی",
-		factory_price: 200000,
-		sell_price: 250000,
+		factory_price: 240000,
+		sell_price: 290000,
 		img: "https://image.torob.com/base/images/Ao/dP/AodPpTHQkKi9aYs8.jpg_/560x560.webp",
 	},
 	{
@@ -164,7 +164,7 @@ export const products = [
 		category: "f-yogurt",
 		name: "ماست موسیر 100 گرمی",
 		factory_price: 75000,
-		sell_price: 75000,
+		sell_price: 89000,
 		img: "https://shahrvand.ir/upload/product/1570535257.jpg",
 	},
 	{
