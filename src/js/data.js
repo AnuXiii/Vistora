@@ -163,7 +163,7 @@ export const products = [
 	{
 		category: "f-yogurt",
 		name: "ماست موسیر 100 گرمی",
-		factory_price: 75000,
+		factory_price: 89000,
 		sell_price: 89000,
 		img: "https://shahrvand.ir/upload/product/1570535257.jpg",
 	},
