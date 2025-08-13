@@ -114,8 +114,8 @@ export const products = [
 	{
 		category: "buttermilk",
 		name: "دوغ نایلون 800 سی سی",
-		factory_price: 160000,
-		sell_price: 200000,
+		factory_price: 200000,
+		sell_price: 250000,
 		img: "https://taravatdairy.com/assets/img/product/%D8%AF%D9%88%D8%BA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
 	},
 	{
@@ -170,8 +170,8 @@ export const products = [
 	{
 		category: "f-yogurt",
 		name: "ماست موسیر 250 گرمی",
-		factory_price: 340000,
-		sell_price: 420000,
+		factory_price: 460000,
+		sell_price: 550000,
 		img: "https://shahrvand.ir/upload/product/1570535257.jpg",
 	},
 	{
@@ -184,8 +184,8 @@ export const products = [
 	{
 		category: "f-yogurt",
 		name: "ماست استیر 450 گرمی",
-		factory_price: 330000,
-		sell_price: 400000,
+		factory_price: 375000,
+		sell_price: 450000,
 		img: "https://www.1dayoff.com/uploads/ProductsPhotos/92487234/202738_2000.jpg",
 	},
 	{
@@ -247,22 +247,22 @@ export const products = [
 	{
 		category: "yogurt",
 		name: "ماست 450 گرمی پر چرب",
-		factory_price: 280000,
+		factory_price: 43000,
 		sell_price: 350000,
 		img: "https://taravatdairy.com/assets/img/product/%D8%AA%D9%86%D9%88%D8%B9%20%D8%AF%D8%B1%20%D8%A8%D8%B3%D8%AA%D9%87%E2%80%8C%D8%A8%D9%86%D8%AF%DB%8C%20%D9%85%D8%A7%D8%B3%D8%AA%20%D9%BE%D8%A7%D8%B3%D8%AA%D9%88%D8%B1%DB%8C%D8%B2%D9%87%20%DA%A9%D9%85%E2%80%8C%DA%86%D8%B1%D8%A8%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
 	},
 	{
 		category: "yogurt",
 		name: "ماست 700 گرمی کم چرب",
-		factory_price: 390000,
-		sell_price: 490000,
+		factory_price: 435000,
+		sell_price: 540000,
 		img: "https://taravatdairy.com/assets/img/product/%D8%AA%D9%86%D9%88%D8%B9%20%D8%AF%D8%B1%20%D8%A8%D8%B3%D8%AA%D9%87%E2%80%8C%D8%A8%D9%86%D8%AF%DB%8C%20%D9%85%D8%A7%D8%B3%D8%AA%20%D9%BE%D8%A7%D8%B3%D8%AA%D9%88%D8%B1%DB%8C%D8%B2%D9%87%20%DA%A9%D9%85%E2%80%8C%DA%86%D8%B1%D8%A8%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
 	},
 	{
 		category: "yogurt",
 		name: "ماست 700 گرمی پر چرب",
-		factory_price: 390000,
-		sell_price: 490000,
+		factory_price: 435000,
+		sell_price: 540000,
 		img: "https://taravatdairy.com/assets/img/product/%D8%AA%D9%86%D9%88%D8%B9%20%D8%AF%D8%B1%20%D8%A8%D8%B3%D8%AA%D9%87%E2%80%8C%D8%A8%D9%86%D8%AF%DB%8C%20%D9%85%D8%A7%D8%B3%D8%AA%20%D9%BE%D8%A7%D8%B3%D8%AA%D9%88%D8%B1%DB%8C%D8%B2%D9%87%20%DA%A9%D9%85%E2%80%8C%DA%86%D8%B1%D8%A8%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
 	},
 	{
@@ -303,8 +303,8 @@ export const products = [
 	{
 		category: "yogurt",
 		name: "ماست 2200 گرمی پر چرب",
-		factory_price: 1020000,
-		sell_price: 1170000,
+		factory_price: 1110000,
+		sell_price: 1370000,
 		img: "https://taravatdairy.com/assets/img/product/%D8%AA%D9%86%D9%88%D8%B9%20%D8%AF%D8%B1%20%D8%A8%D8%B3%D8%AA%D9%87%E2%80%8C%D8%A8%D9%86%D8%AF%DB%8C%20%D9%85%D8%A7%D8%B3%D8%AA%20%D9%BE%D8%A7%D8%B3%D8%AA%D9%88%D8%B1%DB%8C%D8%B2%D9%87%20%D9%BE%D8%B1%DA%86%D8%B1%D8%A8%20%D8%B7%D8%B1%D8%A7%D9%88%D8%AA.jpg",
 	},
 	{
